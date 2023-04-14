@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     Clear: typeof import('./src/components/icons/clear.vue')['default']
     Close: typeof import('./src/components/icons/close.vue')['default']
     Delete: typeof import('./src/components/icons/delete.vue')['default']
+    IconGithubOne: typeof import('@icon-space/vue-next')['GithubOne']
     Input: typeof import('./src/components/inputx/input.vue')['default']
     Item: typeof import('./src/components/list/item.vue')['default']
     List: typeof import('./src/components/list/index.vue')['default']

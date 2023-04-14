@@ -5,6 +5,7 @@ const useChatStore = defineStore('chat', {
     state: (): ChatOption => ({
         modal: false,
         setting: 'global',
+        timeout: 5000,
         avatar: '/avatar.jpg',
         host: 'https://api.openai.com',
         api_key: '',
@@ -15,7 +16,14 @@ const useChatStore = defineStore('chat', {
         temperature: 0,
         presence_penalty: 0
     }),
-    getters: {},
+    getters: {
+        getHost: state => {
+            if (state.host.trim().length) {
+                state.host = 'https://api.openai.com'
+            }
+            return state.host
+        }
+    },
     actions: {},
     // 启用持久化
     persist: true

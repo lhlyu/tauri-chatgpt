@@ -26,6 +26,9 @@
                         <ListItem label="启用Markdown">
                             <Switch v-model="chat.markdown" />
                         </ListItem>
+                        <ListItem label="请求超时时间" desc="单位毫秒">
+                            <InputBox type="number" v-model="chat.timeout" />
+                        </ListItem>
                     </List>
 
                     <List>

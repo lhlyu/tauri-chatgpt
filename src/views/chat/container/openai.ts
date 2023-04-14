@@ -1,5 +1,18 @@
 import useSessionsStrore from '../../../stores/sessions'
 import useChatStore from '../../../stores/chat'
+import sessions from "../../../stores/sessions";
+
+
+function isJsonString(str: string): boolean {
+    try {
+        if (typeof JSON.parse(str) == "object") {
+            return true;
+        }
+    } catch(e) {
+    }
+    return false;
+}
+
 
 const useOpenai = () => {
     const store = useSessionsStrore()
@@ -39,6 +52,12 @@ const useOpenai = () => {
             }
             try {
                 const lines = (prefix + value).trim().split('\n')
+                if (lines.length === 8 && isJsonString(value)) {
+                    const msg = '请求发生了异常: \n\n```json\n' + value + '\n```'
+                    store.appendMessage(msg, true)
+                    await scrollBottom()
+                    break
+                }
                 for (let i = 0; i < lines.length; i++) {
                     const line = lines[i].trim()
                     if (line.length === 0) {
@@ -59,15 +78,21 @@ const useOpenai = () => {
             } catch (e) {
                 console.error(e)
                 console.log('value:', value)
+                const msg = '解析数据异常: \n\n```json\n' + (e as any).message.toString() + '\n```\n\n数据: `' + value + '`'
+                store.appendMessage(msg, true)
+                await scrollBottom()
             }
         }
     }
 
     const request = async () => {
+
+        const controller = new AbortController()
+        const id = setTimeout(() => controller.abort(), chat.timeout)
+
         const opt = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 Authorization: `Bearer ${chat.api_key}`
             },
             body: JSON.stringify({
@@ -77,22 +102,26 @@ const useOpenai = () => {
                 temperature: chat.temperature,
                 presence_penalty: chat.presence_penalty,
                 stream: true
-            })
+            }),
+            signal: controller.signal
         }
 
         addMessage('assistant', '')
 
         await scrollBottom()
 
-        const response = await fetch(chat.host + '/v1/chat/completions', opt)
+        try {
+            const response = await fetch(chat.getHost + '/v1/chat/completions', opt)
+            clearTimeout(id)
 
-        if (!response.ok) {
-            console.log(response)
-            return
-        }
-
-        if (response.body) {
-            await getStream(response.body.pipeThrough(new TextDecoderStream()).getReader())
+            if (response.body) {
+                await getStream(response.body.pipeThrough(new TextDecoderStream()).getReader())
+            }
+        } catch (e) {
+            console.error(e)
+            const msg = (e as any).message.toString()
+            store.appendMessage(msg, true)
+            await scrollBottom()
         }
     }
 

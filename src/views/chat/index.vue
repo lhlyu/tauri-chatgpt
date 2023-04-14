@@ -47,7 +47,7 @@ main {
     }
 
     article {
-        flex: 1;
+        width: calc(100vw - 300px);
         height: 100%;
         background-color: rgb(242, 242, 242);
     }
