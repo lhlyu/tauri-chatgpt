@@ -7,6 +7,9 @@ marked.setOptions({
     }
 })
 
-export default (s: string): string => {
+export default (s: string, enable: boolean = true): string => {
+    if (!enable) {
+        return s
+    }
     return marked(s)
 }

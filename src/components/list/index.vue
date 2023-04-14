@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    border: 1px solid rgb(229, 231, 235);
+    border: 1px solid rgb(var(--border-color));
     overflow: hidden;
 
     &:not(:last-child) {

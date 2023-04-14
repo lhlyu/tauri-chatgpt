@@ -31,7 +31,7 @@ const props = defineProps({
     padding: 0 20px;
 
     &:not(:last-child) {
-        border-bottom: 1px solid rgb(229, 231, 235);
+        border-bottom: 1px solid rgb(var(--border-color));
     }
 
     .left {

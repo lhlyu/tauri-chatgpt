@@ -1,20 +1,18 @@
+import { useI18n } from 'vue-i18n'
 import useSessionsStrore from '../../../stores/sessions'
 import useChatStore from '../../../stores/chat'
-import sessions from "../../../stores/sessions";
-
 
 function isJsonString(str: string): boolean {
     try {
-        if (typeof JSON.parse(str) == "object") {
-            return true;
+        if (typeof JSON.parse(str) == 'object') {
+            return true
         }
-    } catch(e) {
-    }
-    return false;
+    } catch (e) {}
+    return false
 }
 
-
 const useOpenai = () => {
+    const { t } = useI18n()
     const store = useSessionsStrore()
     const chat = useChatStore()
 
@@ -53,7 +51,7 @@ const useOpenai = () => {
             try {
                 const lines = (prefix + value).trim().split('\n')
                 if (lines.length === 8 && isJsonString(value)) {
-                    const msg = '请求发生了异常: \n\n```json\n' + value + '\n```'
+                    const msg = t('err') + ': \n\n```json\n' + value + '\n```'
                     store.appendMessage(msg, true)
                     await scrollBottom()
                     break
@@ -78,7 +76,7 @@ const useOpenai = () => {
             } catch (e) {
                 console.error(e)
                 console.log('value:', value)
-                const msg = '解析数据异常: \n\n```json\n' + (e as any).message.toString() + '\n```\n\n数据: `' + value + '`'
+                const msg = t('err') + ': \n\n```json\n' + (e as any).message.toString() + '\n```\n\ndata: `' + value + '`'
                 store.appendMessage(msg, true)
                 await scrollBottom()
             }
@@ -86,13 +84,13 @@ const useOpenai = () => {
     }
 
     const request = async () => {
-
         const controller = new AbortController()
         const id = setTimeout(() => controller.abort(), chat.timeout)
 
         const opt = {
             method: 'POST',
             headers: {
+                'content-type': 'application/json',
                 Authorization: `Bearer ${chat.api_key}`
             },
             body: JSON.stringify({

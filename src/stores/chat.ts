@@ -3,10 +3,11 @@ import { defineStore } from 'pinia'
 // 设置
 const useChatStore = defineStore('chat', {
     state: (): ChatOption => ({
+        lang: 'zh',
+        theme: 'light',
         modal: false,
         setting: 'global',
         timeout: 5000,
-        avatar: '/avatar.jpg',
         host: 'https://api.openai.com',
         api_key: '',
         markdown: true,
@@ -18,13 +19,20 @@ const useChatStore = defineStore('chat', {
     }),
     getters: {
         getHost: state => {
-            if (state.host.trim().length) {
+            if (state.host.trim().length === 0) {
                 state.host = 'https://api.openai.com'
             }
             return state.host
         }
     },
-    actions: {},
+    actions: {
+        changeLang() {
+            this.lang = this.lang === 'zh' ? 'en' : 'zh'
+        },
+        changeTheme() {
+            this.theme = this.theme === 'light' ? 'dark' : 'light'
+        }
+    },
     // 启用持久化
     persist: true
 })

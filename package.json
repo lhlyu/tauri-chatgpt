@@ -1,10 +1,10 @@
 {
   "name": "tauri-chatgpt",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "repository": {
-    "url": "https://github.com/"
+    "url": "https://github.com/lhlyu/tauri-chatgpt"
   },
   "scripts": {
     "fmt": "prettier --write ./src ./vite.config.ts",
@@ -16,7 +16,6 @@
     "tauri:icon": "tauri icon ./chatgpt.png"
   },
   "dependencies": {
-    "@icon-space/vue-next": "^1.0.6",
     "@tauri-apps/api": "^1.2.0",
     "dayjs": "^1.11.7",
     "highlight.js": "^11.7.0",
@@ -24,9 +23,11 @@
     "nanoid": "^4.0.2",
     "pinia": "^2.0.34",
     "pinia-plugin-persistedstate": "^3.1.0",
+    "tippy.js": "^6.3.7",
     "vue": "^3.2.47",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6",
+    "vue-tippy": "v6",
     "zipson": "^0.2.12"
   },
   "devDependencies": {
@@ -40,7 +41,6 @@
     "sass": "^1.62.0",
     "typescript": "^5.0.4",
     "unplugin-auto-import": "^0.15.2",
-    "unplugin-vue-components": "^0.24.1",
     "vite": "^4.2.1",
     "vue-tsc": "^1.2.0"
   }

@@ -13,7 +13,7 @@
                     {{ desc }}
                 </div>
                 <div class="action">
-                    <i @click.stop="deleteSession">
+                    <i @click.stop="deleteSession" v-tippy="$t('iconDeleteSession')">
                         <IconDelete></IconDelete>
                     </i>
                 </div>
@@ -85,7 +85,7 @@ const activeSession = () => {
     scroll-snap-align: start;
 
     &:hover:not(.active) {
-        background-color: rgb(243, 244, 246);
+        background-color: rgb(var(--session-hover-bg-color));
     }
 
     .avatar {
@@ -127,7 +127,7 @@ const activeSession = () => {
                 flex-shrink: 0;
                 max-width: 50px;
                 font-size: 12px;
-                color: rgb(156, 163, 175);
+                color: rgb(var(--session-time-color));
             }
         }
 
@@ -136,7 +136,7 @@ const activeSession = () => {
             justify-content: space-between;
             font-size: 12px;
             line-height: 1.8;
-            color: rgb(107, 114, 128);
+            color: rgb(var(--session-bottom-color));
 
             .desc {
                 overflow: hidden;
@@ -167,7 +167,7 @@ const activeSession = () => {
 }
 
 .active {
-    background-color: rgb(0, 154, 255);
+    background-color: rgb(var(--primary-color));
     color: white;
 
     .info {
