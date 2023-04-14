@@ -10,19 +10,10 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/icons/add.vue')['default']
-    Bubble: typeof import('./src/components/bubble/index.vue')['default']
     Clear: typeof import('./src/components/icons/clear.vue')['default']
     Close: typeof import('./src/components/icons/close.vue')['default']
     Delete: typeof import('./src/components/icons/delete.vue')['default']
-    IconAddOne: typeof import('@icon-space/vue-next')['AddOne']
-    IconClear: typeof import('@icon-space/vue-next')['Clear']
-    IconCloseOne: typeof import('@icon-space/vue-next')['CloseOne']
-    IconGithubOne: typeof import('@icon-space/vue-next')['GithubOne']
-    IconSave: typeof import('@icon-space/vue-next')['Save']
-    IconSettingTwo: typeof import('@icon-space/vue-next')['SettingTwo']
-    IconWifi: typeof import('@icon-space/vue-next')['Wifi']
     Input: typeof import('./src/components/inputx/input.vue')['default']
-    Inputx: typeof import('./src/components/inputx/index.vue')['default']
     Item: typeof import('./src/components/list/item.vue')['default']
     List: typeof import('./src/components/list/index.vue')['default']
     Modal: typeof import('./src/components/modal/index.vue')['default']
@@ -35,8 +26,5 @@ declare module '@vue/runtime-core' {
     Sun: typeof import('./src/components/icons/sun.vue')['default']
     Switch: typeof import('./src/components/inputx/switch.vue')['default']
     Translate: typeof import('./src/components/icons/translate.vue')['default']
-    VAbout: typeof import('./src/components/setting/v-about.vue')['default']
-    VProfile: typeof import('./src/components/setting/v-profile.vue')['default']
-    VTheme: typeof import('./src/components/setting/v-theme.vue')['default']
   }
 }

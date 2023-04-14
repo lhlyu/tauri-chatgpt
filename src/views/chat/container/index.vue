@@ -2,7 +2,7 @@
     <div class="container" v-if="store.id.length">
         <header>
             <div class="left">
-                <input type="text" :value="store.getActiveSession.title" maxlength="16" placeholder="会话标题" @blur="changeTitle" />
+                <input type="text" :value="store.getActiveSession?.title ?? ''" maxlength="16" placeholder="会话标题" @blur="changeTitle" />
             </div>
             <div class="right">
                 <i @click="closeSession">
@@ -17,7 +17,7 @@
             </div>
         </header>
         <section ref="dom">
-            <Bubble v-for="v in store.getActiveSession.messages" v-bind="v"></Bubble>
+            <Bubble v-for="v in store.getActiveSession?.messages" v-bind="v"></Bubble>
         </section>
         <footer>
             <textarea :disabled="loading" placeholder="Shift-Enter换行，Enter发送" v-model="msg" autofocus @keydown="send"></textarea>
@@ -50,10 +50,12 @@ const clearMessages = () => {
 
 const changeTitle = (ev: FocusEvent) => {
     const value = (ev.target as HTMLInputElement).value
-    store.updateSession({
-        ...store.getActiveSession,
-        title: value
-    })
+    if (store.getActiveSession) {
+        store.updateSession({
+            ...store.getActiveSession,
+            title: value
+        })
+    }
 }
 
 const { dom, loading, msg, send } = useOpenai()

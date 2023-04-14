@@ -43,11 +43,13 @@ const scroll = ref<HTMLDivElement>()
 const scrollToActive = () => {
     const t = setTimeout(() => {
         if (store.id.length) {
-            scroll.value.querySelector(`#${store.id}`).scrollIntoView({
-                behavior: 'smooth',
-                block: 'end',
-                inline: 'nearest'
-            })
+            if (scroll.value) {
+                scroll.value.querySelector(`#${store.id}`)?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end',
+                    inline: 'nearest'
+                })
+            }
         }
         clearTimeout(t)
     }, 200)
