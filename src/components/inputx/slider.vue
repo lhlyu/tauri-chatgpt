@@ -1,7 +1,7 @@
 <template>
     <div class="slider">
         <output>{{ modelValue }}</output>
-        <input type="range" :min="min" :max="max" :step="step" :value="modelValue" @input="change"/>
+        <input type="range" :min="min" :max="max" :step="step" :value="modelValue" @input="change" />
     </div>
 </template>
 
@@ -13,7 +13,7 @@ const props = defineProps({
     },
     min: {
         type: Number,
-        default: 0
+        default: 1
     },
     max: {
         type: Number,
@@ -22,13 +22,13 @@ const props = defineProps({
     step: {
         type: Number,
         default: 1
-    },
+    }
 })
 
 const emit = defineEmits(['update:modelValue'])
 
 const change = (e: Event) => {
-    emit('update:modelValue', (e.target as HTMLInputElement).value)
+    emit('update:modelValue', Number.parseInt((e.target as HTMLInputElement).value))
 }
 </script>
 

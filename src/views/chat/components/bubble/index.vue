@@ -2,12 +2,10 @@
     <div class="bubble" :id="id">
         <div class="top">
             <div class="avatar">
-                <img :src="role === 'user' ? '/avatar.jpg' : '/logo.svg'" alt="avatar">
+                <img :src="role === 'user' ? '/avatar.jpg' : '/logo.svg'" alt="avatar" />
                 <time>{{ dayjs(ts).format('YYYY-MM-DD HH:mm:ss') }}</time>
             </div>
-            <div class="action">
-
-            </div>
+            <div class="action"></div>
         </div>
         <div class="bottom">
             <div class="content markdown-body" v-if="content?.length" v-html="md(content)"></div>
@@ -17,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 import md from './md'
 
 const props = defineProps({
@@ -36,10 +34,8 @@ const props = defineProps({
     content: {
         type: String,
         default: ''
-    },
+    }
 })
-
-
 </script>
 
 <style scoped lang="scss">

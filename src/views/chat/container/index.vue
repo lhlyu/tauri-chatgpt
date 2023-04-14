@@ -2,7 +2,7 @@
     <div class="container" v-if="store.id.length">
         <header>
             <div class="left">
-                <input type="text" :value="store.getActiveSession.title" maxlength="16" placeholder="会话标题" @blur="changeTitle">
+                <input type="text" :value="store.getActiveSession.title" maxlength="16" placeholder="会话标题" @blur="changeTitle" />
             </div>
             <div class="right">
                 <i @click="closeSession">
@@ -23,17 +23,15 @@
             <textarea :disabled="loading" placeholder="Shift-Enter换行，Enter发送" v-model="msg" autofocus @keydown="send"></textarea>
         </footer>
     </div>
-    <div class="empty" v-else>
-        请在左侧选择一个会话
-    </div>
+    <div class="empty" v-else>请在左侧选择一个会话</div>
 </template>
 
 <script setup lang="ts">
-import {IconSetting, IconClose, IconClear} from "../../../components/icons";
-import { Bubble } from "../components";
-import useSessionsStrore from "../../../stores/sessions";
-import useOpenai from "./openai";
-import useChatStore from "../../../stores/chat";
+import { IconSetting, IconClose, IconClear } from '../../../components/icons'
+import { Bubble } from '../components'
+import useSessionsStrore from '../../../stores/sessions'
+import useOpenai from './openai'
+import useChatStore from '../../../stores/chat'
 
 const store = useSessionsStrore()
 const chat = useChatStore()
@@ -43,7 +41,7 @@ const showModalSetting = () => {
 }
 
 const closeSession = () => {
-    store.id = ''
+    store.closeSession()
 }
 
 const clearMessages = () => {
@@ -54,17 +52,11 @@ const changeTitle = (ev: FocusEvent) => {
     const value = (ev.target as HTMLInputElement).value
     store.updateSession({
         ...store.getActiveSession,
-        title: value,
+        title: value
     })
 }
 
-const {
-    dom,
-    loading,
-    msg,
-    send
-} = useOpenai()
-
+const { dom, loading, msg, send } = useOpenai()
 </script>
 
 <style scoped lang="scss">

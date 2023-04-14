@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 
 // 设置
-const useChatStore = defineStore('chat',{
-    state: ():ChatOption => ({
+const useChatStore = defineStore('chat', {
+    state: (): ChatOption => ({
         modal: false,
         setting: 'global',
         avatar: '/avatar.jpg',
@@ -13,11 +13,10 @@ const useChatStore = defineStore('chat',{
         context_count: 5,
         max_tokens: 512,
         temperature: 0,
-        presence_penalty: 0,
+        presence_penalty: 0
     }),
     getters: {},
-    actions: {
-    },
+    actions: {},
     // 启用持久化
     persist: true
 })

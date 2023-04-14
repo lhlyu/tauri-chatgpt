@@ -3,10 +3,10 @@
         <section class="modal-content">
             <div class="sidebar">
                 <ul>
-                    <li @click="onActive(menus[0])" :class="{active: chat.setting === 'global'}">
+                    <li @click="onActive(menus[0])" :class="{ active: chat.setting === 'global' }">
                         <span>通用设置</span>
                     </li>
-                    <li @click="onActive(menus[1])" :class="{active: chat.setting === 'about'}">
+                    <li @click="onActive(menus[1])" :class="{ active: chat.setting === 'about' }">
                         <span>关于我们</span>
                     </li>
                 </ul>
@@ -31,7 +31,7 @@
                     <List>
                         <ListItem label="模型">
                             <SelectBox v-model="chat.model">
-                                <option v-for="v in models" :value="v" :key="v">{{v}}</option>
+                                <option v-for="v in models" :value="v" :key="v">{{ v }}</option>
                             </SelectBox>
                         </ListItem>
                         <ListItem label="附带的上下文条数">
@@ -53,7 +53,7 @@
                     <List>
                         <ListItem label="版本">{{ pkg.version }}</ListItem>
                         <ListItem label="源码">
-                            <IconGithubOne :size="20" :strokeWidth="2"/>
+                            <IconGithubOne :size="20" :strokeWidth="2" />
                         </ListItem>
                     </List>
                 </div>
@@ -70,21 +70,14 @@ import Switch from '../../components/inputx/switch.vue'
 import InputBox from '../../components/inputx/input.vue'
 import Slider from '../../components/inputx/slider.vue'
 import SelectBox from '../../components/inputx/select.vue'
-import useChatStore from "../../stores/chat";
+import useChatStore from '../../stores/chat'
 import pkg from '../../../package.json'
 
 const chat = useChatStore()
 
 const menus = ['global', 'about']
 
-const models = [
-    'gpt-4',
-    'gpt-4-0314',
-    'gpt-4-32k',
-    'gpt-4-32k-0314',
-    'gpt-3.5-turbo',
-    'gpt-3.5-turbo-0301',
-]
+const models = ['gpt-4', 'gpt-4-0314', 'gpt-4-32k', 'gpt-4-32k-0314', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0301']
 
 // 单击
 const onActive = (menu: string) => {
@@ -128,7 +121,6 @@ const onActive = (menu: string) => {
                 span {
                     margin-right: 8px;
                 }
-
             }
             .active {
                 background-color: rgba(0, 154, 255, 0.8);

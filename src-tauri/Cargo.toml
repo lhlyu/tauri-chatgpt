@@ -1,10 +1,10 @@
 [package]
 name = "tauri-chatgpt"
-version = "0.0.0"
+version = "0.0.1"
 description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
+authors = ["lhlyu"]
+license = "MIT"
+repository = "https://github.com/lhlyu/tauri-chatgpt"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

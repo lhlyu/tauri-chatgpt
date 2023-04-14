@@ -5,11 +5,13 @@ import { parse, stringify } from 'zipson'
 const pinia = createPinia()
 
 // 持久化插件
-pinia.use(createPersistedState({
-    serializer: {
-        deserialize: parse,
-        serialize: stringify,
-    },
-}))
+pinia.use(
+    createPersistedState({
+        serializer: {
+            deserialize: parse,
+            serialize: stringify
+        }
+    })
+)
 
 export default pinia

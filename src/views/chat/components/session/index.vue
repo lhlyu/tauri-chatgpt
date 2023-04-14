@@ -1,7 +1,7 @@
 <template>
-    <div :id="id" class="session" :class="{active}" @click.stop="activeSession">
+    <div :id="id" class="session" :class="{ active }" @click.stop="activeSession">
         <div class="avatar">
-            <img :src="avatar" alt="avatar">
+            <img :src="avatar" alt="avatar" />
         </div>
         <div class="info">
             <div class="top">
@@ -23,9 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import dayjs from "dayjs";
-import { IconDelete } from "../../../../components/icons";
-import useSessionsStrore from "../../../../stores/sessions";
+import dayjs from 'dayjs'
+import { IconDelete } from '../../../../components/icons'
+import useSessionsStrore from '../../../../stores/sessions'
 
 const props = defineProps({
     id: {
@@ -51,7 +51,7 @@ const props = defineProps({
     ts: {
         type: Number,
         default: 0
-    },
+    }
 })
 
 const t = computed(() => {
@@ -164,7 +164,6 @@ const activeSession = () => {
             }
         }
     }
-
 }
 
 .active {

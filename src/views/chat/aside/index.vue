@@ -1,9 +1,7 @@
 <template>
     <div class="aside">
         <header>
-            <div class="left">
-                ChatGPT
-            </div>
+            <div class="left">ChatGPT</div>
             <div class="right">
                 <i>
                     <IconTranslate></IconTranslate>
@@ -19,22 +17,19 @@
                 </i>
             </div>
         </header>
-        <div ref="scroll" class="sessions"  v-if="store.sessions.length">
+        <div ref="scroll" class="sessions" v-if="store.sessions.length">
             <Session v-for="v in store.sessions" :key="v.id" v-bind="v"></Session>
         </div>
-        <div class="empty" v-else>
-            请创建一个会话
-        </div>
+        <div class="empty" v-else>请创建一个会话</div>
     </div>
-
 </template>
 
 <script setup lang="ts">
 import { nanoid } from 'nanoid'
-import { IconSetting, IconSun, IconMoon, IconTranslate, IconAdd } from "../../../components/icons";
+import { IconSetting, IconSun, IconMoon, IconTranslate, IconAdd } from '../../../components/icons'
 import { Session } from '../components'
-import useSessionsStrore from "../../../stores/sessions"
-import useChatStore from "../../../stores/chat";
+import useSessionsStrore from '../../../stores/sessions'
+import useChatStore from '../../../stores/chat'
 
 const store = useSessionsStrore()
 const chat = useChatStore()
@@ -47,11 +42,13 @@ const scroll = ref<HTMLDivElement>()
 
 const scrollToActive = () => {
     const t = setTimeout(() => {
-        scroll.value.querySelector(`#${store.id}`).scrollIntoView({
-            behavior: "smooth",
-            block: "end",
-            inline: "nearest"
-        })
+        if (store.id.length) {
+            scroll.value.querySelector(`#${store.id}`).scrollIntoView({
+                behavior: 'smooth',
+                block: 'end',
+                inline: 'nearest'
+            })
+        }
         clearTimeout(t)
     }, 200)
 }
@@ -117,8 +114,6 @@ onMounted(() => {
                 }
             }
         }
-
-
     }
 
     .sessions {

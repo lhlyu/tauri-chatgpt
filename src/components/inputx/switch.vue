@@ -21,7 +21,7 @@ const change = (e: Event) => {
 </script>
 
 <style scoped lang="scss">
-input[type=checkbox]{
+input[type='checkbox'] {
     height: 0;
     width: 0;
     visibility: hidden;

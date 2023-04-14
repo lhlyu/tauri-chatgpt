@@ -1,4 +1,3 @@
-
 declare interface ChatOption {
     modal: boolean
     setting: string
@@ -20,7 +19,6 @@ declare interface ChatOption {
     presence_penalty: number
 }
 
-
 declare type Role = 'system' | 'user' | 'assistant'
 
 declare interface MessageOption {
@@ -41,7 +39,6 @@ declare interface ChatSessionOption {
     messages: MessageOption[]
 }
 
-
 declare interface SessionOption {
     id: string
     active: boolean
@@ -53,6 +50,6 @@ declare interface SessionOption {
 
 declare interface SessionsOption {
     // 激活的id
-    id: string,
+    id: string
     sessions: SessionOption[]
 }

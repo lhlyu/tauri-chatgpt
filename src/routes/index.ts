@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import ViewChat from '../views/chat/index.vue'
 
-
-const routes:RouteRecordRaw[] = [
+const routes: RouteRecordRaw[] = [
     {
         name: 'chat',
         path: '/',

@@ -15,9 +15,11 @@ export default defineConfig(async () => ({
                 // example of importing Vant
                 componentName => {
                     // where `componentName` is always CapitalCase
-                    if (componentName.startsWith('Icon')) return {
-                        name: componentName.slice(4), from: '@icon-space/vue-next'
-                    }
+                    if (componentName.startsWith('Icon'))
+                        return {
+                            name: componentName.slice(4),
+                            from: '@icon-space/vue-next'
+                        }
                 }
             ]
         })

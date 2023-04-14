@@ -14,7 +14,7 @@
 import ChatAside from './aside/index.vue'
 import ChatContainer from './container/index.vue'
 import ModalSetting from './setting.vue'
-import useChatStore from "../../stores/chat";
+import useChatStore from '../../stores/chat'
 
 const chat = useChatStore()
 
@@ -43,6 +43,7 @@ main {
         height: 100%;
         width: 300px;
         flex-shrink: 0;
+        background-color: rgba(249, 250, 251);
     }
 
     article {

@@ -1,15 +1,18 @@
 <template>
-    <input :type="type" :value="modelValue" @input="change">
+    <input :type="type" :value="modelValue" @input="change" />
 </template>
 
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-    modelValue?: string | number,
-    type?: string
-}>(), {
-    modelValue: '',
-    type: 'text'
-})
+const props = withDefaults(
+    defineProps<{
+        modelValue?: string | number
+        type?: string
+    }>(),
+    {
+        modelValue: '',
+        type: 'text'
+    }
+)
 
 const emit = defineEmits(['update:modelValue'])
 

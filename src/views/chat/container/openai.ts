@@ -1,9 +1,7 @@
-import useSessionsStrore from "../../../stores/sessions";
-import useChatStore from "../../../stores/chat";
-
+import useSessionsStrore from '../../../stores/sessions'
+import useChatStore from '../../../stores/chat'
 
 const useOpenai = () => {
-
     const store = useSessionsStrore()
     const chat = useChatStore()
 
@@ -32,42 +30,45 @@ const useOpenai = () => {
         return message.id
     }
 
-
     const getStream = async (reader: ReadableStreamDefaultReader) => {
         let prefix = ''
-        while(true) {
+        while (true) {
             const { done, value } = await reader.read()
             if (done) {
                 break
             }
-            const lines = (prefix + value).trim().split('\n')
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim()
-                if (line.length === 0) {
-                    continue
-                }
-                if (!line.endsWith("}]}")) {
-                    prefix = line
-                    continue
-                }
-                if (line.startsWith("data: ")) {
-                    const json = JSON.parse(line.substring(6))
-                    if (json?.choices?.[0]?.delta?.content) {
-                        store.appendMessage(json.choices[0].delta.content)
-                        await scrollBottom()
+            try {
+                const lines = (prefix + value).trim().split('\n')
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim()
+                    if (line.length === 0) {
+                        continue
+                    }
+                    if (!line.endsWith('}]}')) {
+                        prefix = line
+                        continue
+                    }
+                    if (line.startsWith('data: ')) {
+                        const json = JSON.parse(line.substring(6))
+                        if (json?.choices?.[0]?.delta?.content) {
+                            store.appendMessage(json.choices[0].delta.content)
+                            await scrollBottom()
+                        }
                     }
                 }
+            } catch (e) {
+                console.error(e)
+                console.log('value:', value)
             }
         }
     }
 
     const request = async () => {
-
         const opt = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${chat.api_key}`,
+                Authorization: `Bearer ${chat.api_key}`
             },
             body: JSON.stringify({
                 model: chat.model,
@@ -75,7 +76,7 @@ const useOpenai = () => {
                 messages: store.getActiveSessionMessages(chat.context_count),
                 temperature: chat.temperature,
                 presence_penalty: chat.presence_penalty,
-                stream: true,
+                stream: true
             })
         }
 
@@ -83,7 +84,7 @@ const useOpenai = () => {
 
         await scrollBottom()
 
-        const response = await fetch(chat.host + '/v1/chat/completions',  opt)
+        const response = await fetch(chat.host + '/v1/chat/completions', opt)
 
         if (!response.ok) {
             console.log(response)
@@ -94,7 +95,6 @@ const useOpenai = () => {
             await getStream(response.body.pipeThrough(new TextDecoderStream()).getReader())
         }
     }
-
 
     // 发送消息
     const send = async (ev: KeyboardEvent) => {
@@ -123,7 +123,6 @@ const useOpenai = () => {
             await scrollBottom()
             // 请求
             await request()
-
         }
         loading.value = false
     }
@@ -132,7 +131,6 @@ const useOpenai = () => {
         await scrollBottom()
     })
 
-
     return {
         dom,
         loading,
@@ -140,6 +138,5 @@ const useOpenai = () => {
         send
     }
 }
-
 
 export default useOpenai

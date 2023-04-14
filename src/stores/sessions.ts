@@ -1,5 +1,4 @@
-import { defineStore } from "pinia";
-
+import { defineStore } from 'pinia'
 
 const useSessionsStrore = defineStore('sessions', {
     state: (): SessionsOption => ({
@@ -19,10 +18,11 @@ const useSessionsStrore = defineStore('sessions', {
             for (let i = 0; i < state.sessions.length; i++) {
                 if (state.sessions[i].active) {
                     const msgs = state.sessions[i].messages as Partial<MessageOption>[]
-                    return msgs.slice((-1) * count).map(value => {
-                        delete value.id
-                        delete value.ts
-                        return value
+                    return msgs.slice(-1 * count).map(value => {
+                        return {
+                            role: value.role,
+                            content: value.content
+                        }
                     })
                 }
             }
@@ -66,8 +66,8 @@ const useSessionsStrore = defineStore('sessions', {
                 }
             }
         },
-        closeSession(id: string) {
-            this.id = ''
+        closeSession() {
+            this.active('')
         },
         addMessage(id: string, msg: MessageOption) {
             for (let i = 0; i < this.sessions.length; i++) {
@@ -98,7 +98,7 @@ const useSessionsStrore = defineStore('sessions', {
                 if (this.sessions[i].id === id) {
                     for (let j = 0; j < this.sessions[i].messages.length; j++) {
                         if (this.sessions[i].messages[j].id === msgId) {
-                            if (j === (this.sessions[i].messages.length - 1) && j > 0) {
+                            if (j === this.sessions[i].messages.length - 1 && j > 0) {
                                 this.sessions[i].desc = this.sessions[i].messages[j - 1].content.slice(0, 30)
                             }
                             this.sessions[i].messages.splice(j, 1)
@@ -121,6 +121,5 @@ const useSessionsStrore = defineStore('sessions', {
     // 启用持久化
     persist: true
 })
-
 
 export default useSessionsStrore
