@@ -1,6 +1,8 @@
 declare interface ChatOption {
     modal: boolean
     setting: string
+    // 请求超时时间
+    timeout: number
     // host
     host: string
     // 是否启用markdown解析

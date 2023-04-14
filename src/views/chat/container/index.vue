@@ -16,11 +16,16 @@
                 </i>
             </div>
         </header>
-        <section ref="dom">
+        <section ref="dom" v-if="chat.api_key.length">
             <Bubble v-for="v in store.getActiveSession?.messages" v-bind="v"></Bubble>
         </section>
+        <section class="empty" v-else>
+            <p>你还没有设置API_KEY</p>
+            <br>
+            <p>使用Esc键或点击顶部的设置按钮打开设置</p>
+        </section>
         <footer>
-            <textarea :disabled="loading" placeholder="Shift-Enter换行，Enter发送" v-model="msg" autofocus @keydown="send"></textarea>
+            <textarea :disabled="loading || chat.api_key.length === 0" placeholder="Shift-Enter换行，Enter发送" v-model="msg" autofocus @keydown="send"></textarea>
         </footer>
     </div>
     <div class="empty" v-else>请在左侧选择一个会话</div>
@@ -64,6 +69,7 @@ const { dom, loading, msg, send } = useOpenai()
 <style scoped lang="scss">
 .empty {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;

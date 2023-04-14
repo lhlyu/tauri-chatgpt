@@ -346,7 +346,8 @@
     margin-bottom: 0;
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
     font-size: 12px;
-    word-wrap: normal;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .markdown-body .octicon {
@@ -710,7 +711,7 @@
     padding: 0;
     margin: 0;
     word-break: normal;
-    white-space: pre;
+    //white-space: pre;
     background: transparent;
     border: 0;
 }
@@ -721,7 +722,8 @@
 
 .markdown-body .highlight pre {
     margin-bottom: 0;
-    word-break: normal;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .markdown-body .highlight pre,
@@ -736,15 +738,16 @@
 
 .markdown-body pre code,
 .markdown-body pre tt {
-    display: inline;
+    display: inline-block;
     max-width: auto;
     padding: 0;
     margin: 0;
     overflow: visible;
     line-height: inherit;
-    word-wrap: normal;
     background-color: transparent;
     border: 0;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .markdown-body .csv-data td,
