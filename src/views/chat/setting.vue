@@ -4,49 +4,46 @@
             <div class="sidebar">
                 <ul>
                     <li @click="onActive(menus[0])" :class="{ active: chat.setting === 'global' }">
-                        <span>通用设置</span>
+                        <span>{{ $t('setting') }}</span>
                     </li>
                     <li @click="onActive(menus[1])" :class="{ active: chat.setting === 'about' }">
-                        <span>关于我们</span>
+                        <span>{{ $t('about') }}</span>
                     </li>
                 </ul>
             </div>
             <div class="container">
                 <div class="lists" v-if="chat.setting === 'global'">
                     <List>
-                        <ListItem label="头像" desc="可以使用网络地址">
-                            <InputBox v-model="chat.avatar" />
-                        </ListItem>
-                        <ListItem label="Host" desc="可以使用自己的代理服务器">
+                        <ListItem label="Host" :desc="$t('hostDesc')">
                             <InputBox v-model="chat.host" />
                         </ListItem>
                         <ListItem label="ApiKey" desc="openai api key">
                             <InputBox type="password" v-model="chat.api_key" />
                         </ListItem>
-                        <ListItem label="启用Markdown">
+                        <ListItem :label="$t('enableMarkdown')">
                             <Switch v-model="chat.markdown" />
                         </ListItem>
-                        <ListItem label="请求超时时间" desc="单位毫秒">
+                        <ListItem :label="$t('requestTimeoutTitle')" :desc="$t('requestTimeoutDesc')">
                             <InputBox type="number" v-model="chat.timeout" />
                         </ListItem>
                     </List>
 
                     <List>
-                        <ListItem label="模型">
+                        <ListItem :label="$t('modelTitle')">
                             <SelectBox v-model="chat.model">
                                 <option v-for="v in models" :value="v" :key="v">{{ v }}</option>
                             </SelectBox>
                         </ListItem>
-                        <ListItem label="附带的上下文条数">
+                        <ListItem :label="$t('contextCountTitle')">
                             <Slider v-model="chat.context_count" />
                         </ListItem>
-                        <ListItem label="回复最大tokens数量">
+                        <ListItem :label="$t('maxTokenTitle')">
                             <InputBox type="number" v-model="chat.max_tokens" />
                         </ListItem>
-                        <ListItem label="随机性" desc="值越大，回复越随机">
+                        <ListItem :label="$t('temperatureTitle')" :desc="$t('temperatureDesc')">
                             <Slider :min="0.0" :max="2.0" :step="0.1" v-model="chat.temperature" />
                         </ListItem>
-                        <ListItem label="话题新鲜度" desc="值越大，回复偏向新鲜">
+                        <ListItem :label="$t('presencePenaltyTitle')" :desc="$t('presencePenaltyDesc')">
                             <Slider :min="-2.0" :max="2.0" :step="0.1" v-model="chat.presence_penalty" />
                         </ListItem>
                     </List>
@@ -54,9 +51,9 @@
 
                 <div class="lists" v-if="chat.setting === 'about'">
                     <List>
-                        <ListItem label="版本">{{ pkg.version }}</ListItem>
-                        <ListItem label="源码">
-                            <IconGithubOne :size="20" :strokeWidth="2" />
+                        <ListItem :label="$t('version')">{{ pkg.version }}</ListItem>
+                        <ListItem :label="$t('source')">
+                            <IconLink></IconLink>
                         </ListItem>
                     </List>
                 </div>
@@ -75,6 +72,7 @@ import Slider from '../../components/inputx/slider.vue'
 import SelectBox from '../../components/inputx/select.vue'
 import useChatStore from '../../stores/chat'
 import pkg from '../../../package.json'
+import { IconLink } from '../../components/icons/index'
 
 const chat = useChatStore()
 
@@ -96,14 +94,14 @@ const onActive = (menu: string) => {
     border-radius: 10px;
     overflow: hidden;
     z-index: 100;
-    background-color: #fff;
+    background-color: rgb(var(--modal-bg-color));
     user-select: none;
-    border: 1px solid rgb(229, 231, 235);
+    border: 1px solid rgb(var(--border-color));
 
     .sidebar {
         width: 300px;
         padding: 20px;
-        background-color: rgb(243, 244, 246);
+        background-color: rgb(var(--sidebar-bg-color));
         user-select: none;
 
         ul {
@@ -120,13 +118,13 @@ const onActive = (menu: string) => {
                 font-size: 0.875rem;
                 border-radius: 4px;
                 cursor: pointer;
-                border: 1px solid rgba(0, 154, 255, 0.8);
+                border: 1px solid rgba(var(--primary-color), 0.8);
                 span {
                     margin-right: 8px;
                 }
             }
             .active {
-                background-color: rgba(0, 154, 255, 0.8);
+                background-color: rgba(var(--primary-color), 0.8);
                 color: white;
             }
         }

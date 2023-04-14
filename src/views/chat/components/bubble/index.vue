@@ -2,14 +2,21 @@
     <div class="bubble" :id="id">
         <div class="top">
             <div class="avatar">
-                <img :src="role === 'user' ? '/avatar.jpg' : '/logo.svg'" alt="avatar" />
+                <img :src="role === 'user' ? store.getActiveSession?.avatar : '/logo.svg'" alt="avatar" />
                 <time>{{ dayjs(ts).format('YYYY-MM-DD HH:mm:ss') }}</time>
             </div>
-            <div class="action"></div>
+            <div class="action">
+                <i @click.stop="deleteMessage" v-tippy="$t('iconDeleteMessage')">
+                    <IconTrash></IconTrash>
+                </i>
+                <!--                <i @click.stop="copyMessageContent">-->
+                <!--                    <IconCopy></IconCopy>-->
+                <!--                </i>-->
+            </div>
         </div>
         <div class="bottom">
-            <div class="content markdown-body" v-if="content?.length" v-html="md(content)"></div>
-            <div class="content" v-else>思考中...</div>
+            <div class="content markdown-body" v-if="content?.length" v-html="md(content, chat.markdown)"></div>
+            <div class="content" v-else>{{ $t('waitMessage') }}</div>
         </div>
     </div>
 </template>
@@ -17,6 +24,12 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import md from './md'
+import useChatStore from '../../../../stores/chat'
+import useSessionsStrore from '../../../../stores/sessions'
+import { IconTrash } from '../../../../components/icons'
+
+const chat = useChatStore()
+const store = useSessionsStrore()
 
 const props = defineProps({
     id: {
@@ -36,6 +49,14 @@ const props = defineProps({
         default: ''
     }
 })
+
+const deleteMessage = () => {
+    store.removeMessage(store.id, props.id as string)
+}
+
+const copyMessageContent = () => {
+    // TODO
+}
 </script>
 
 <style scoped lang="scss">
@@ -45,7 +66,7 @@ const props = defineProps({
     transition: background-color 0.2s ease-in-out;
 
     &:hover {
-        background-color: rgb(229, 231, 235);
+        background-color: rgb(var(--bubble-hover-bg-color));
     }
 
     .top {
@@ -56,7 +77,7 @@ const props = defineProps({
 
         .avatar {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             height: 30px;
 
             img {
@@ -69,6 +90,30 @@ const props = defineProps({
                 font-size: 12px;
             }
         }
+
+        .action {
+            display: flex;
+            flex-shrink: 0;
+            justify-content: flex-end;
+            align-items: flex-end;
+            width: 80px;
+
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 36px;
+                height: 36px;
+                border-radius: 4px;
+                cursor: pointer;
+                background-color: transparent;
+                transition: background-color 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: rgb(var(--bubble-icon-hover-bg-color));
+                }
+            }
+        }
     }
 
     .bottom {
@@ -76,6 +121,7 @@ const props = defineProps({
 
         .content {
             line-height: 1.8;
+            color: var(--font-color);
         }
     }
 }

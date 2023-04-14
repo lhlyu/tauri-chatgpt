@@ -2,16 +2,16 @@
     <div class="container" v-if="store.id.length">
         <header>
             <div class="left">
-                <input type="text" :value="store.getActiveSession?.title ?? ''" maxlength="16" placeholder="会话标题" @blur="changeTitle" />
+                <input type="text" :value="store.getActiveSession?.title ?? ''" maxlength="16" :placeholder="$t('sessionTitlePlaceholder')" @blur="changeTitle" />
             </div>
             <div class="right">
-                <i @click="closeSession">
+                <i @click="closeSession" v-tippy="$t('iconCloseSession')">
                     <IconClose></IconClose>
                 </i>
-                <i @click="clearMessages">
+                <i @click="clearMessages" v-tippy="$t('iconClearMessages')">
                     <IconClear></IconClear>
                 </i>
-                <i @click="showModalSetting">
+                <i @click="showModalSetting" v-tippy="$t('iconSetting')">
                     <IconSetting></IconSetting>
                 </i>
             </div>
@@ -20,15 +20,15 @@
             <Bubble v-for="v in store.getActiveSession?.messages" v-bind="v"></Bubble>
         </section>
         <section class="empty" v-else>
-            <p>你还没有设置API_KEY</p>
-            <br>
-            <p>使用Esc键或点击顶部的设置按钮打开设置</p>
+            <p>{{ $t('noSetApiKey') }}</p>
+            <br />
+            <p>{{ $t('openSetting') }}</p>
         </section>
         <footer>
-            <textarea :disabled="loading || chat.api_key.length === 0" placeholder="Shift-Enter换行，Enter发送" v-model="msg" autofocus @keydown="send"></textarea>
+            <textarea :disabled="loading || chat.api_key.length === 0" :placeholder="$t('textareaPlaceholder')" v-model="msg" autofocus @keydown="send"></textarea>
         </footer>
     </div>
-    <div class="empty" v-else>请在左侧选择一个会话</div>
+    <div class="empty" v-else>{{ $t('openSession') }}</div>
 </template>
 
 <script setup lang="ts">
@@ -68,6 +68,7 @@ const { dom, loading, msg, send } = useOpenai()
 
 <style scoped lang="scss">
 .empty {
+    user-select: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -76,7 +77,7 @@ const { dom, loading, msg, send } = useOpenai()
     width: 100%;
     font-size: 18px;
     letter-spacing: 1px;
-    color: rgb(156, 163, 175);
+    color: rgb(var(--empty-font-color));
 }
 
 $header-height: 60px;
@@ -89,7 +90,7 @@ $footer-height: 160px;
         align-items: center;
         height: $header-height;
         padding: 0 25px;
-        border-bottom: 1px solid rgb(229, 231, 235);
+        border-bottom: 1px solid rgb(var(--border-color));
 
         .left {
             flex: 1;
@@ -99,6 +100,7 @@ $footer-height: 160px;
                 border: 0;
                 font-weight: bold;
                 font-size: 16px;
+                color: var(--font-color);
                 background-color: transparent;
             }
         }
@@ -121,7 +123,7 @@ $footer-height: 160px;
                 transition: background-color 0.2s ease-in-out;
 
                 &:hover {
-                    background-color: rgb(229, 231, 235);
+                    background-color: rgb(var(--icon-hover-bg-color));
                 }
             }
         }
@@ -135,7 +137,7 @@ $footer-height: 160px;
 
     footer {
         height: $footer-height;
-        border-top: 1px solid rgb(229, 231, 235);
+        border-top: 1px solid rgb(var(--border-color));
         padding: 20px 25px;
 
         textarea {
@@ -145,6 +147,7 @@ $footer-height: 160px;
             width: 100%;
             height: 100%;
             background-color: transparent;
+            color: var(--font-color);
             line-height: 1.8;
             letter-spacing: 1px;
         }

@@ -3,16 +3,17 @@
         <header>
             <div class="left">ChatGPT</div>
             <div class="right">
-                <i>
+                <i @click="changeLang" v-tippy="$t('iconLanguage')">
                     <IconTranslate></IconTranslate>
                 </i>
-                <i>
-                    <IconSun></IconSun>
+                <i @click="changeTheme" v-tippy="$t('iconTheme')">
+                    <IconSun v-if="chat.theme === 'light'"></IconSun>
+                    <IconMoon v-else></IconMoon>
                 </i>
-                <i @click="showModalSetting">
+                <i @click="showModalSetting" v-tippy="$t('iconSetting')">
                     <IconSetting></IconSetting>
                 </i>
-                <i @click="createSession">
+                <i @click="createSession" v-tippy="$t('iconAddSession')">
                     <IconAdd></IconAdd>
                 </i>
             </div>
@@ -20,22 +21,37 @@
         <div ref="scroll" class="sessions" v-if="store.sessions.length">
             <Session v-for="v in store.sessions" :key="v.id" v-bind="v"></Session>
         </div>
-        <div class="empty" v-else>请创建一个会话</div>
+        <div class="empty" v-else>{{ $t('createSession') }}</div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { nanoid } from 'nanoid'
+import { useI18n } from 'vue-i18n'
+import { customAlphabet } from 'nanoid'
 import { IconSetting, IconSun, IconMoon, IconTranslate, IconAdd } from '../../../components/icons'
 import { Session } from '../components'
 import useSessionsStrore from '../../../stores/sessions'
 import useChatStore from '../../../stores/chat'
 
+const nanoid = customAlphabet('1234567890abcdefghijkmnprstuvwxyz', 12)
+
+const { t, locale } = useI18n()
 const store = useSessionsStrore()
 const chat = useChatStore()
 
 const showModalSetting = () => {
     chat.modal = true
+}
+
+const changeTheme = () => {
+    chat.changeTheme()
+    document.documentElement.setAttribute('theme', chat.theme)
+}
+
+const changeLang = () => {
+    chat.changeLang()
+    locale.value = chat.lang
+    document.documentElement.setAttribute('lang', chat.lang)
 }
 
 const scroll = ref<HTMLDivElement>()
@@ -56,11 +72,13 @@ const scrollToActive = () => {
 }
 
 const createSession = () => {
+    const id = nanoid()
     const session: SessionOption = {
-        id: nanoid(),
+        id: id,
+        avatar: `https://api.multiavatar.com/${id}.png`,
         active: true,
-        title: '新建会话',
-        desc: '暂无消息',
+        title: t('newSession'),
+        desc: t('emptyMessage'),
         ts: +new Date(),
         messages: []
     }
@@ -71,6 +89,8 @@ const createSession = () => {
 }
 
 onMounted(() => {
+    document.documentElement.setAttribute('theme', chat.theme)
+    document.documentElement.setAttribute('lang', chat.lang)
     if (scroll.value) {
         scrollToActive()
     }
@@ -108,11 +128,11 @@ onMounted(() => {
                 padding: 5px;
                 border-radius: 4px;
                 cursor: pointer;
-                background-color: rgb(243, 244, 246);
+                background-color: rgb(var(--icon-bg-color));
                 transition: background-color 0.2s ease-in-out;
 
                 &:hover {
-                    background-color: rgb(229, 231, 235);
+                    background-color: rgb(var(--icon-hover-bg-color));
                 }
             }
         }
@@ -133,7 +153,7 @@ onMounted(() => {
         width: 100%;
         font-size: 18px;
         letter-spacing: 1px;
-        color: rgb(156, 163, 175);
+        color: rgb(var(--empty-font-color));
     }
 }
 </style>

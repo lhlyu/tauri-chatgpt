@@ -43,13 +43,13 @@ main {
         height: 100%;
         width: 300px;
         flex-shrink: 0;
-        background-color: rgba(249, 250, 251);
+        background-color: rgba(var(--aside-bg-color));
     }
 
     article {
         width: calc(100vw - 300px);
         height: 100%;
-        background-color: rgb(242, 242, 242);
+        background-color: rgb(var(--article-bg-color));
     }
 }
 </style>

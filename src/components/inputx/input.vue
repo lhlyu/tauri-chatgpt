@@ -28,9 +28,11 @@ const change = (e: Event) => {
 <style scoped lang="scss">
 input {
     outline: none;
-    border: 1px solid rgba(0, 154, 255, 0.4);
+    border: 1px solid rgba(var(--primary-color), 0.4);
     padding: 10px;
     border-radius: 6px;
     min-width: 260px;
+    background-color: transparent;
+    color: var(--font-color);
 }
 </style>

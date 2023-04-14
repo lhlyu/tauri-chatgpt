@@ -113,6 +113,7 @@ const useSessionsStrore = defineStore('sessions', {
             for (let i = 0; i < this.sessions.length; i++) {
                 if (this.sessions[i].id === id) {
                     this.sessions[i].messages = []
+                    this.sessions[i].desc = '暂无消息'
                     break
                 }
             }

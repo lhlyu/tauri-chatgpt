@@ -15,7 +15,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const change = (e: Event) => {
+const change = () => {
     emit('update:modelValue', !props.modelValue)
 }
 </script>
@@ -50,7 +50,7 @@ label:after {
 }
 
 input:checked + label {
-    background: rgb(0, 154, 255);
+    background: rgb(var(--primary-color));
 }
 
 input:checked + label:after {

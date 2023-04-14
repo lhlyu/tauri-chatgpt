@@ -43,15 +43,15 @@ const change = (e: Event) => {
         appearance: none;
         height: 8px;
         border-radius: 10px;
-        color: rgba(0, 154, 255, 1);
-        background-color: rgba(0, 154, 255, 0.2);
+        color: rgba(var(--primary-color), 1);
+        background-color: rgba(var(--primary-color), 0.2);
 
         &::-webkit-slider-thumb {
             appearance: none;
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            background-color: rgba(0, 154, 255, 1);
+            background-color: rgba(var(--primary-color), 1);
             cursor: pointer;
         }
     }
