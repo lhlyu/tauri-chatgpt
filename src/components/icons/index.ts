@@ -1,0 +1,8 @@
+export { default as IconSetting } from './setting.vue'
+export { default as IconMoon } from './moon.vue'
+export { default as IconSun } from './sun.vue'
+export { default as IconTranslate } from './translate.vue'
+export { default as IconAdd } from './add.vue'
+export { default as IconDelete } from './delete.vue'
+export { default as IconClear } from './clear.vue'
+export { default as IconClose } from './close.vue'
