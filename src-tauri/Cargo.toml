@@ -1,6 +1,6 @@
 [package]
 name = "tauri-chatgpt"
-version = "0.0.3"
+version = "0.0.4"
 description = "A Tauri App"
 authors = ["lhlyu"]
 license = "MIT"

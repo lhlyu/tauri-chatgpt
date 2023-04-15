@@ -17,13 +17,17 @@ const useSessionsStrore = defineStore('sessions', {
         getActiveSessionMessages: state => (count: number) => {
             for (let i = 0; i < state.sessions.length; i++) {
                 if (state.sessions[i].active) {
-                    const msgs = state.sessions[i].messages as Partial<MessageOption>[]
-                    return msgs.slice(-1 * count).map(value => {
-                        return {
+                    const msgs = state.sessions[i].messages
+
+                    const ms: Omit<MessageOption, 'id' | 'ts'>[] = []
+
+                    msgs.slice(-1 * count).map(value => {
+                        ms.push({
                             role: value.role,
                             content: value.content
-                        }
+                        })
                     })
+                    return ms
                 }
             }
             return []
@@ -58,9 +62,9 @@ const useSessionsStrore = defineStore('sessions', {
                 this.id = ''
             }
         },
-        updateSession(session: SessionOption) {
+        updateSession(id: string, session: SessionOption) {
             for (let i = 0; i < this.sessions.length; i++) {
-                if (this.sessions[i].id === session.id) {
+                if (this.sessions[i].id === id) {
                     this.sessions[i] = session
                     break
                 }

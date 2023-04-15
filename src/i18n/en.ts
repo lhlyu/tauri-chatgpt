@@ -1,9 +1,9 @@
 export default {
     newSession: 'New Session',
-    emptyMessage: 'Empty Messages',
+    emptyMessage: 'empty messages',
     waitMessage: 'Thinking...',
     sessionTitlePlaceholder: 'Session Title',
-    textareaPlaceholder: 'Shift-Enter Wrap，Enter Send',
+    textareaPlaceholder: '{wrap} Wrap，{send} Send，/ Open Presets',
     noSetApiKey: 'You Have Not Set API_KEY',
     openSetting: 'Use The Esc Key Or Click The Settings Button At The Top To Open The Settings',
     openSession: 'Please Select A Conversation On The Left',
@@ -11,6 +11,7 @@ export default {
     setting: 'Setting',
     hostDesc: 'can use own proxy server',
     enableMarkdown: 'Enable Markdown',
+    enableEnter: 'Enter Wrap',
     requestTimeoutTitle: 'Request Timeout',
     requestTimeoutDesc: 'milliseconds',
     modelTitle: 'Model',
@@ -31,5 +32,6 @@ export default {
     iconClearMessages: 'clear messages',
     iconDeleteSession: 'delete session',
     iconDeleteMessage: 'delete message',
+    iconCopy: 'copied',
     err: 'Something Unusual Happened'
 }
