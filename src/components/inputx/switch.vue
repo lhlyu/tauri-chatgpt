@@ -1,12 +1,16 @@
 <template>
-    <input type="checkbox" id="switch" :checked="props.modelValue" @change="change" />
-    <label for="switch">
+    <input type="checkbox" :id="`switch-${name}`" :checked="props.modelValue" @change="change" />
+    <label :for="`switch-${name}`">
         <slot></slot>
     </label>
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
+    name: {
+        type: String,
+        default: ''
+    },
     modelValue: {
         type: Boolean,
         default: false

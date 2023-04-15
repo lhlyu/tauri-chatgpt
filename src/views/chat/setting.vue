@@ -21,7 +21,10 @@
                             <InputBox type="password" v-model="chat.api_key" />
                         </ListItem>
                         <ListItem :label="$t('enableMarkdown')">
-                            <Switch v-model="chat.markdown" />
+                            <Switch v-model="chat.markdown" name="markdown" />
+                        </ListItem>
+                        <ListItem :label="$t('enableEnter')">
+                            <Switch v-model="chat.enter" name="enter" />
                         </ListItem>
                         <ListItem :label="$t('requestTimeoutTitle')" :desc="$t('requestTimeoutDesc')">
                             <InputBox type="number" v-model="chat.timeout" />

@@ -9,24 +9,28 @@
                 <i @click.stop="deleteMessage" v-tippy="$t('iconDeleteMessage')">
                     <IconTrash></IconTrash>
                 </i>
-                <!--                <i @click.stop="copyMessageContent">-->
-                <!--                    <IconCopy></IconCopy>-->
-                <!--                </i>-->
+                <i @click.stop="copyMessageContent" v-tippy="{ content: $t('iconCopy'), trigger: 'click' }">
+                    <IconCopy></IconCopy>
+                </i>
             </div>
         </div>
         <div class="bottom">
-            <div class="content markdown-body" v-if="content?.length" v-html="md(content, chat.markdown)"></div>
+            <div class="content markdown-body" v-if="content?.length && chat.markdown" v-html="md(content ?? '')"></div>
+            <div class="content plain-body" v-else-if="content?.length && !chat.markdown">
+                <pre>{{ content }}</pre>
+            </div>
             <div class="content" v-else>{{ $t('waitMessage') }}</div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { writeText } from '@tauri-apps/api/clipboard'
 import dayjs from 'dayjs'
 import md from './md'
 import useChatStore from '../../../../stores/chat'
 import useSessionsStrore from '../../../../stores/sessions'
-import { IconTrash } from '../../../../components/icons'
+import { IconTrash, IconCopy } from '../../../../components/icons'
 
 const chat = useChatStore()
 const store = useSessionsStrore()
@@ -54,8 +58,12 @@ const deleteMessage = () => {
     store.removeMessage(store.id, props.id as string)
 }
 
-const copyMessageContent = () => {
-    // TODO
+const copyMessageContent = async () => {
+    try {
+        await writeText(props.content as string)
+    } catch (e) {
+        await navigator.clipboard.writeText(props.content as string)
+    }
 }
 </script>
 
@@ -120,8 +128,15 @@ const copyMessageContent = () => {
         padding-top: 10px;
 
         .content {
-            line-height: 1.8;
+            line-height: 1.6;
             color: var(--font-color);
+        }
+
+        .plain-body {
+            pre {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
         }
     }
 }

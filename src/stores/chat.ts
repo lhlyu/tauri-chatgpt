@@ -11,9 +11,10 @@ const useChatStore = defineStore('chat', {
         host: 'https://api.openai.com',
         api_key: '',
         markdown: true,
+        enter: true,
         model: 'gpt-3.5-turbo',
-        context_count: 5,
-        max_tokens: 512,
+        context_count: 9,
+        max_tokens: 1024,
         temperature: 0,
         presence_penalty: 0
     }),

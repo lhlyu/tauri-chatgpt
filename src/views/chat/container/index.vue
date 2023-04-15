@@ -17,6 +17,7 @@
             </div>
         </header>
         <section ref="dom" v-if="chat.api_key.length">
+            <Preset :show="showPreset as boolean" @pick="pickPreset"></Preset>
             <Bubble v-for="v in store.getActiveSession?.messages" v-bind="v"></Bubble>
         </section>
         <section class="empty" v-else>
@@ -25,7 +26,13 @@
             <p>{{ $t('openSetting') }}</p>
         </section>
         <footer>
-            <textarea :disabled="loading || chat.api_key.length === 0" :placeholder="$t('textareaPlaceholder')" v-model="msg" autofocus @keydown="send"></textarea>
+            <textarea
+                ref="textarea"
+                :disabled="loading || chat.api_key.length === 0"
+                :placeholder="t('textareaPlaceholder', chat.enter ? { wrap: 'Shift+Enter', send: 'Enter' } : { wrap: 'Enter', send: 'Shift+Enter' })"
+                v-model="msg"
+                @keydown="send"
+            ></textarea>
         </footer>
     </div>
     <div class="empty" v-else>{{ $t('openSession') }}</div>
@@ -34,10 +41,13 @@
 <script setup lang="ts">
 import { IconSetting, IconClose, IconClear } from '../../../components/icons'
 import { Bubble } from '../components'
+import { useI18n } from 'vue-i18n'
+import Preset from './preset.vue'
 import useSessionsStrore from '../../../stores/sessions'
 import useOpenai from './openai'
 import useChatStore from '../../../stores/chat'
 
+const { t } = useI18n()
 const store = useSessionsStrore()
 const chat = useChatStore()
 
@@ -56,14 +66,14 @@ const clearMessages = () => {
 const changeTitle = (ev: FocusEvent) => {
     const value = (ev.target as HTMLInputElement).value
     if (store.getActiveSession) {
-        store.updateSession({
+        store.updateSession(store.id, {
             ...store.getActiveSession,
             title: value
         })
     }
 }
 
-const { dom, loading, msg, send } = useOpenai()
+const { dom, textarea, loading, showPreset, msg, send, pickPreset } = useOpenai()
 </script>
 
 <style scoped lang="scss">
@@ -130,6 +140,7 @@ $footer-height: 160px;
     }
 
     section {
+        position: relative;
         height: calc(100vh - $header-height - $footer-height);
         overflow: auto;
         scroll-behavior: smooth;

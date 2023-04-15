@@ -17,8 +17,19 @@ const useOpenai = () => {
     const chat = useChatStore()
 
     const dom = ref<HTMLElement>()
+    const textarea = ref<HTMLTextAreaElement>()
     const loading = ref<boolean>(false)
+    const showPreset = ref<boolean>(false)
     const msg = ref<string>('')
+
+    const focus = () => {
+        const t = setTimeout(() => {
+            if (textarea.value) {
+                textarea.value.focus()
+            }
+            clearTimeout(t)
+        }, 200)
+    }
 
     // 滚动到底部
     const scrollBottom = async () => {
@@ -26,6 +37,7 @@ const useOpenai = () => {
             if (dom.value) {
                 dom.value.scrollTo(0, dom.value.scrollHeight)
             }
+            focus()
         })
     }
 
@@ -56,6 +68,7 @@ const useOpenai = () => {
                     await scrollBottom()
                     break
                 }
+                let buf = ''
                 for (let i = 0; i < lines.length; i++) {
                     const line = lines[i].trim()
                     if (line.length === 0) {
@@ -68,10 +81,13 @@ const useOpenai = () => {
                     if (line.startsWith('data: ')) {
                         const json = JSON.parse(line.substring(6))
                         if (json?.choices?.[0]?.delta?.content) {
-                            store.appendMessage(json.choices[0].delta.content)
-                            await scrollBottom()
+                            buf += json.choices[0].delta.content
                         }
                     }
+                }
+                if (buf.length) {
+                    store.appendMessage(buf)
+                    await scrollBottom()
                 }
             } catch (e) {
                 console.error(e)
@@ -123,36 +139,87 @@ const useOpenai = () => {
         }
     }
 
+    // 换行
+    const wrap = (ev: KeyboardEvent) => {
+        msg.value = msg.value.trim()
+        if (!msg.value.length) {
+            ev.preventDefault()
+            return
+        }
+    }
+
+    // 请求
+    const doRequest = async (ev: KeyboardEvent) => {
+        msg.value = msg.value.trim()
+
+        if (msg.value.startsWith('/')) {
+            msg.value = msg.value.substring(1)
+        }
+
+        if (!msg.value.length) {
+            ev.preventDefault()
+            return
+        }
+
+        // 添加消息
+        addMessage('user', msg.value)
+        msg.value = ''
+
+        await scrollBottom()
+        // 请求
+        await request()
+
+        await scrollBottom()
+    }
+
     // 发送消息
     const send = async (ev: KeyboardEvent) => {
-        loading.value = true
         if (ev.shiftKey && ev.key === 'Enter') {
-            msg.value = msg.value.trim()
-            if (!msg.value.length) {
-                ev.preventDefault()
-                loading.value = false
-                return
+            loading.value = true
+            if (chat.enter) {
+                wrap(ev)
+            } else {
+                await doRequest(ev)
             }
             loading.value = false
             return
         }
         if (ev.key === 'Enter') {
-            msg.value = msg.value.trim()
-            if (!msg.value.length) {
-                ev.preventDefault()
-                loading.value = false
-                return
+            loading.value = true
+            if (chat.enter) {
+                await doRequest(ev)
+            } else {
+                wrap(ev)
             }
-            // 添加消息
-            addMessage('user', msg.value)
-            msg.value = ''
-
-            await scrollBottom()
-            // 请求
-            await request()
+            loading.value = false
         }
-        loading.value = false
+
+        if (ev.key === '/') {
+            msg.value = msg.value.trim()
+            if (msg.value.length === 0) {
+                showPreset.value = true
+                msg.value = '/'
+                ev.preventDefault()
+            }
+        }
     }
+
+    const pickPreset = (preset: string) => {
+        msg.value = '/' + preset
+        focus()
+    }
+
+    watch(msg, (newValue, oldValue) => {
+        if (newValue.trim().length === 0) {
+            showPreset.value = false
+        }
+    })
+
+    store.$subscribe((mutation, state) => {
+        if (state.id.length) {
+            focus()
+        }
+    })
 
     onMounted(async () => {
         await scrollBottom()
@@ -160,9 +227,12 @@ const useOpenai = () => {
 
     return {
         dom,
+        textarea,
         loading,
+        showPreset,
         msg,
-        send
+        send,
+        pickPreset
     }
 }
 

@@ -3,7 +3,7 @@ export default {
     emptyMessage: '暂无消息',
     waitMessage: '思考中...',
     sessionTitlePlaceholder: '会话标题',
-    textareaPlaceholder: 'Shift-Enter换行，Enter发送',
+    textareaPlaceholder: '{wrap}换行，{send}发送，/ 打开预设',
     noSetApiKey: '你还没有设置API_KEY',
     openSetting: '使用Esc键或点击顶部的设置按钮打开设置',
     openSession: '请在左侧选择一个会话',
@@ -11,6 +11,7 @@ export default {
     setting: '通用设置',
     hostDesc: '可以使用自己的代理服务器',
     enableMarkdown: '启用Markdown',
+    enableEnter: 'Enter换行',
     requestTimeoutTitle: '请求超时时间',
     requestTimeoutDesc: '单位毫秒',
     modelTitle: '模型',
@@ -31,5 +32,6 @@ export default {
     iconClearMessages: '清空消息',
     iconDeleteSession: '删除会话',
     iconDeleteMessage: '删除这条消息',
+    iconCopy: '复制成功',
     err: '发生了一些异常'
 }

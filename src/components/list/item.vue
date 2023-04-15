@@ -27,8 +27,9 @@ const props = defineProps({
 .list-item {
     display: flex;
     justify-content: space-between;
-    height: 60px;
-    padding: 0 20px;
+    min-height: 60px;
+    padding: 10px 20px;
+    cursor: default;
 
     &:not(:last-child) {
         border-bottom: 1px solid rgb(var(--border-color));
@@ -41,7 +42,8 @@ const props = defineProps({
 
         small {
             font-size: 0.75rem;
-            color: #777;
+            color: rgb(var(--list-item-desc-color));
+            line-height: 1.4;
         }
     }
 
