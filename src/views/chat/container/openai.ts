@@ -61,7 +61,8 @@ const useOpenai = () => {
                 break
             }
             try {
-                const lines = (prefix + value).trim().split('\n')
+                const lines = (prefix + value).split('\n')
+                prefix = ''
                 if (lines.length === 8 && isJsonString(value)) {
                     const msg = t('err') + ': \n\n```json\n' + value + '\n```'
                     store.appendMessage(msg, true)
@@ -70,7 +71,7 @@ const useOpenai = () => {
                 }
                 let buf = ''
                 for (let i = 0; i < lines.length; i++) {
-                    const line = lines[i].trim()
+                    const line = lines[i]
                     if (line.length === 0) {
                         continue
                     }
@@ -193,13 +194,21 @@ const useOpenai = () => {
             }
             loading.value = false
         }
-
         if (ev.key === '/') {
             msg.value = msg.value.trim()
             if (msg.value.length === 0) {
                 showPreset.value = true
                 msg.value = '/'
                 ev.preventDefault()
+                return
+            }
+
+            // 针对苹果中文输入顿号的处理
+            if (msg.value === '、') {
+                showPreset.value = true
+                msg.value = '/'
+                ev.preventDefault()
+                return
             }
         }
     }
