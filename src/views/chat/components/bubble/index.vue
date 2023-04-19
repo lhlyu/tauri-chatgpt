@@ -21,6 +21,7 @@
             </div>
             <div class="content" v-else>{{ $t('waitMessage') }}</div>
         </div>
+        <slot></slot>
     </div>
 </template>
 
@@ -70,6 +71,7 @@ const copyMessageContent = async () => {
 <style scoped lang="scss">
 
 .bubble {
+    position: relative;
     width: 100%;
     padding: 25px;
     transition: background-color 0.2s ease-in-out;

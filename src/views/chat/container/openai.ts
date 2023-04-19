@@ -22,6 +22,8 @@ const useOpenai = () => {
     const showPreset = ref<boolean>(false)
     const msg = ref<string>('')
 
+    const reader = ref<ReadableStreamDefaultReader>()
+
     const focus = () => {
         const t = setTimeout(() => {
             if (textarea.value) {
@@ -53,10 +55,13 @@ const useOpenai = () => {
         return message.id
     }
 
-    const getStream = async (reader: ReadableStreamDefaultReader) => {
+    const getStream = async () => {
+        if (!reader.value) {
+            return
+        }
         let prefix = ''
         while (true) {
-            const { done, value } = await reader.read()
+            const { done, value } = await reader.value.read()
             if (done) {
                 break
             }
@@ -130,7 +135,9 @@ const useOpenai = () => {
             clearTimeout(id)
 
             if (response.body) {
-                await getStream(response.body.pipeThrough(new TextDecoderStream()).getReader())
+                reader.value = response.body.pipeThrough(new TextDecoderStream()).getReader()
+                await getStream()
+                reader.value = undefined
             }
         } catch (e) {
             console.error(e)
@@ -205,6 +212,13 @@ const useOpenai = () => {
         }
     }
 
+    // 取消接收消息
+    const cancelRecv = async () => {
+        if (reader.value) {
+            reader.value.cancel()
+        }
+    }
+
     const pickPreset = (preset: string) => {
         msg.value = '/' + preset
         focus()
@@ -233,6 +247,7 @@ const useOpenai = () => {
         showPreset,
         msg,
         send,
+        cancelRecv,
         pickPreset
     }
 }
