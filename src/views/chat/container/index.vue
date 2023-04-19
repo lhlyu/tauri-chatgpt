@@ -2,7 +2,14 @@
     <div class="container" v-if="store.id.length">
         <header>
             <div class="left">
-                <input type="text" :value="store.getActiveSession?.title ?? ''" maxlength="16" :placeholder="$t('sessionTitlePlaceholder')" @blur="changeTitle" />
+                <input
+                    type="text"
+                    :value="store.getActiveSession?.title ?? ''"
+                    maxlength="16"
+                    :placeholder="$t('sessionTitlePlaceholder')"
+                    @blur="changeTitle"
+                    autocomplete="off"
+                />
             </div>
             <div class="right">
                 <i @click="closeSession" v-tippy="$t('iconCloseSession')">
@@ -18,7 +25,11 @@
         </header>
         <section ref="dom" v-if="chat.api_key.length">
             <Preset :show="showPreset as boolean" @pick="pickPreset"></Preset>
-            <Bubble v-for="v in store.getActiveSession?.messages" v-bind="v"></Bubble>
+            <Bubble v-for="(v, i) in store.getActiveSession?.messages" :key="v.id" v-bind="v">
+                <div class="cancel-mask" v-if="i === (store.getActiveSession?.messages.length - 1) && loading" @click="cancelRecv">
+                    {{ $t('cancel') }}
+                </div>
+            </Bubble>
         </section>
         <section class="empty" v-else>
             <p>{{ $t('noSetApiKey') }}</p>
@@ -30,6 +41,7 @@
                 ref="textarea"
                 :disabled="loading || chat.api_key.length === 0"
                 :placeholder="t('textareaPlaceholder', chat.enter ? { wrap: 'Shift+Enter', send: 'Enter' } : { wrap: 'Enter', send: 'Shift+Enter' })"
+                autocomplete="off"
                 v-model="msg"
                 @keydown="send"
             ></textarea>
@@ -73,7 +85,7 @@ const changeTitle = (ev: FocusEvent) => {
     }
 }
 
-const { dom, textarea, loading, showPreset, msg, send, pickPreset } = useOpenai()
+const { dom, textarea, loading, showPreset, msg, send, cancelRecv, pickPreset } = useOpenai()
 </script>
 
 <style scoped lang="scss">
@@ -144,6 +156,25 @@ $footer-height: 160px;
         height: calc(100vh - $header-height - $footer-height);
         overflow: auto;
         scroll-behavior: smooth;
+
+        .cancel-mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            cursor: pointer;
+            background-color: rgba(var(--bubble-hover-bg-color), 0.5);
+            z-index: 2;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
     }
 
     footer {

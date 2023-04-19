@@ -33,5 +33,6 @@ export default {
     iconDeleteSession: '删除会话',
     iconDeleteMessage: '删除这条消息',
     iconCopy: '复制成功',
+    cancel: '取消',
     err: '发生了一些异常'
 }
