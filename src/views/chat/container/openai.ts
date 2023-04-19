@@ -196,15 +196,7 @@ const useOpenai = () => {
         }
         if (ev.key === '/') {
             msg.value = msg.value.trim()
-            if (msg.value.length === 0) {
-                showPreset.value = true
-                msg.value = '/'
-                ev.preventDefault()
-                return
-            }
-
-            // 针对苹果中文输入顿号的处理
-            if (msg.value === '、') {
+            if (msg.value.length === 0 || msg.value === '、') {
                 showPreset.value = true
                 msg.value = '/'
                 ev.preventDefault()

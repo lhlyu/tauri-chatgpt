@@ -68,6 +68,7 @@ const copyMessageContent = async () => {
 </script>
 
 <style scoped lang="scss">
+
 .bubble {
     width: 100%;
     padding: 25px;
