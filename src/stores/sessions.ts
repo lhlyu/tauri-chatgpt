@@ -35,6 +35,7 @@ const useSessionsStrore = defineStore('sessions', {
     },
     actions: {
         active(id: string) {
+            this.id = id
             for (let i = 0; i < this.sessions.length; i++) {
                 if (this.sessions[i].id === id) {
                     this.sessions[i].active = true
@@ -42,7 +43,6 @@ const useSessionsStrore = defineStore('sessions', {
                 }
                 this.sessions[i].active = false
             }
-            this.id = id
         },
         add(session: SessionOption) {
             this.sessions.unshift(session)

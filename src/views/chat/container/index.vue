@@ -161,6 +161,7 @@ $footer-height: 160px;
             color: var(--font-color);
             line-height: 1.8;
             letter-spacing: 1px;
+
         }
     }
 }
