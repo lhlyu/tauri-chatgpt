@@ -39,7 +39,6 @@ const useOpenai = () => {
             if (dom.value) {
                 dom.value.scrollTo(0, dom.value.scrollHeight)
             }
-            focus()
         })
     }
 
@@ -87,14 +86,16 @@ const useOpenai = () => {
                     if (line.startsWith('data: ')) {
                         const json = JSON.parse(line.substring(6))
                         if (json?.choices?.[0]?.delta?.content) {
-                            buf += json.choices[0].delta.content
+                            // buf += json.choices[0].delta.content
+                            store.appendMessage(json.choices[0].delta.content)
+                            await scrollBottom()
                         }
                     }
                 }
-                if (buf.length) {
-                    store.appendMessage(buf)
-                    await scrollBottom()
-                }
+                // if (buf.length) {
+                //     store.appendMessage(buf)
+                //     await scrollBottom()
+                // }
             } catch (e) {
                 console.error(e)
                 console.log('value:', value)

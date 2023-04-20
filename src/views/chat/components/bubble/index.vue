@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="bottom">
-            <div class="content markdown-body" v-if="content?.length && chat.markdown" v-html="md(content ?? '')"></div>
+            <div class="content markdown-body" v-if="content?.length && chat.markdown" v-html="md(content as string)"></div>
             <div class="content plain-body" v-else-if="content?.length && !chat.markdown">
                 <pre>{{ content }}</pre>
             </div>
@@ -69,7 +69,6 @@ const copyMessageContent = async () => {
 </script>
 
 <style scoped lang="scss">
-
 .bubble {
     position: relative;
     width: 100%;
