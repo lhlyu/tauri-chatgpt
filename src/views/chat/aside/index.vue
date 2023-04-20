@@ -33,7 +33,7 @@ import { Session } from '../components'
 import useSessionsStrore from '../../../stores/sessions'
 import useChatStore from '../../../stores/chat'
 
-const nanoid = customAlphabet('1234567890abcdefghijkmnprstuvwxyz', 12)
+const nanoid = customAlphabet('1234567890abcdefghijkmnprstuvwxyz', 10)
 
 const { t, locale } = useI18n()
 const store = useSessionsStrore()
@@ -72,7 +72,7 @@ const scrollToActive = () => {
 }
 
 const createSession = () => {
-    const id = nanoid()
+    const id = 's' + nanoid()
     const session: SessionOption = {
         id: id,
         avatar: `https://api.multiavatar.com/${id}.png`,

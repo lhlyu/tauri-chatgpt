@@ -19,6 +19,8 @@ declare interface ChatOption {
     // 附带的上下文条数
     context_count: number
 
+    code: string
+
     // apiKey
     api_key: string
     // 模型

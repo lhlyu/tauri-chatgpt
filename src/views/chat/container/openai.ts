@@ -2,15 +2,6 @@ import { useI18n } from 'vue-i18n'
 import useSessionsStrore from '../../../stores/sessions'
 import useChatStore from '../../../stores/chat'
 
-function isJsonString(str: string): boolean {
-    try {
-        if (typeof JSON.parse(str) == 'object') {
-            return true
-        }
-    } catch (e) {}
-    return false
-}
-
 const useOpenai = () => {
     const { t } = useI18n()
     const store = useSessionsStrore()
@@ -67,12 +58,6 @@ const useOpenai = () => {
             try {
                 const lines = (prefix + value).split('\n')
                 prefix = ''
-                if (lines.length === 8 && isJsonString(value)) {
-                    const msg = t('err') + ': \n\n```json\n' + value + '\n```'
-                    store.appendMessage(msg, true)
-                    await scrollBottom()
-                    break
-                }
                 let buf = ''
                 for (let i = 0; i < lines.length; i++) {
                     const line = lines[i]
@@ -114,7 +99,8 @@ const useOpenai = () => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                Authorization: `Bearer ${chat.api_key}`
+                Authorization: `Bearer ${chat.api_key}`,
+                'AUTH_CODE': chat.code
             },
             body: JSON.stringify({
                 model: chat.model,
@@ -134,6 +120,12 @@ const useOpenai = () => {
         try {
             const response = await fetch(chat.getHost + '/v1/chat/completions', opt)
             clearTimeout(id)
+
+            if (!response.ok) {
+                const result = await response.json()
+                store.appendMessage('```json\n' + JSON.stringify(result, null, '    ') + '\n```', true)
+                return
+            }
 
             if (response.body) {
                 reader.value = response.body.pipeThrough(new TextDecoderStream()).getReader()
