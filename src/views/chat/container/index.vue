@@ -2,14 +2,7 @@
     <div class="container" v-if="store.id.length">
         <header>
             <div class="left">
-                <input
-                    type="text"
-                    :value="store.getActiveSession?.title ?? ''"
-                    maxlength="16"
-                    :placeholder="$t('sessionTitlePlaceholder')"
-                    @blur="changeTitle"
-                    autocomplete="off"
-                />
+                <input type="text" :value="store.getActiveSession.title ?? ''" maxlength="16" :placeholder="$t('sessionTitlePlaceholder')" @blur="changeTitle" autocomplete="off" />
             </div>
             <div class="right">
                 <i @click="closeSession" v-tippy="$t('iconCloseSession')">
@@ -25,8 +18,8 @@
         </header>
         <section ref="dom" v-if="chat.api_key.length">
             <Preset :show="showPreset as boolean" @pick="pickPreset"></Preset>
-            <Bubble v-for="(v, i) in store.getActiveSession?.messages" :key="v.id" v-bind="v">
-                <div class="cancel-mask" v-if="i === (store.getActiveSession?.messages.length - 1) && loading" @click="cancelRecv">
+            <Bubble v-for="(v, i) in store.getActiveSession.messages" :key="v.id" v-bind="v">
+                <div class="cancel-mask" v-if="i === store.getActiveSession.messages.length - 1 && loading" @click="cancelRecv">
                     {{ $t('cancel') }}
                 </div>
             </Bubble>
@@ -77,7 +70,7 @@ const clearMessages = () => {
 
 const changeTitle = (ev: FocusEvent) => {
     const value = (ev.target as HTMLInputElement).value
-    if (store.getActiveSession) {
+    if (store.getActiveSession.id.length) {
         store.updateSession(store.id, {
             ...store.getActiveSession,
             title: value
@@ -103,7 +96,7 @@ const { dom, textarea, loading, showPreset, msg, send, cancelRecv, pickPreset } 
 }
 
 $header-height: 60px;
-$footer-height: 160px;
+$footer-height: 275px;
 
 .container {
     header {
@@ -192,7 +185,6 @@ $footer-height: 160px;
             color: var(--font-color);
             line-height: 1.8;
             letter-spacing: 1px;
-
         }
     }
 }

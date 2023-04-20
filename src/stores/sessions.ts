@@ -12,7 +12,15 @@ const useSessionsStrore = defineStore('sessions', {
                     return state.sessions[i]
                 }
             }
-            return null
+            return {
+                id: '',
+                avatar: '',
+                active: false,
+                title: '',
+                desc: '',
+                ts: 0,
+                messages: []
+            }
         },
         getActiveSessionMessages: state => (count: number) => {
             for (let i = 0; i < state.sessions.length; i++) {

@@ -30,7 +30,7 @@ const click = (desc: string) => {
 <style scoped lang="scss">
 #preset {
     position: fixed;
-    bottom: 185px;
+    bottom: 300px;
     left: 325px;
     width: calc(100% - 350px);
     height: 400px;
