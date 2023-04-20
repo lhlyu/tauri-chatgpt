@@ -9,6 +9,7 @@ export default {
     openSession: '请在左侧选择一个会话',
     createSession: '请创建一个会话',
     setting: '通用设置',
+    authCode: '授权码',
     hostDesc: '可以使用自己的代理服务器',
     enableMarkdown: '启用Markdown',
     enableEnter: 'Enter换行',

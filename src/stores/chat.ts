@@ -10,6 +10,7 @@ const useChatStore = defineStore('chat', {
         timeout: 5000,
         host: 'https://api.openai.com',
         api_key: '',
+        code: '',
         markdown: true,
         enter: true,
         model: 'gpt-3.5-turbo',
@@ -22,6 +23,9 @@ const useChatStore = defineStore('chat', {
         getHost: state => {
             if (state.host.trim().length === 0) {
                 state.host = 'https://api.openai.com'
+            }
+            if (state.code.trim().length) {
+                return 'https://yu-openai.deno.dev'
             }
             return state.host
         }

@@ -16,7 +16,7 @@
                 </i>
             </div>
         </header>
-        <section ref="dom" v-if="chat.api_key.length">
+        <section ref="dom" v-if="chat.api_key.length || chat.code.length">
             <Preset :show="showPreset as boolean" @pick="pickPreset"></Preset>
             <Bubble v-for="(v, i) in store.getActiveSession.messages" :key="v.id" v-bind="v">
                 <div class="cancel-mask" v-if="i === store.getActiveSession.messages.length - 1 && loading" @click="cancelRecv">
@@ -32,7 +32,7 @@
         <footer>
             <textarea
                 ref="textarea"
-                :disabled="loading || chat.api_key.length === 0"
+                :disabled="loading || (chat.api_key.length === 0 && chat.code.length == 0)"
                 :placeholder="t('textareaPlaceholder', chat.enter ? { wrap: 'Shift+Enter', send: 'Enter' } : { wrap: 'Enter', send: 'Shift+Enter' })"
                 autocomplete="off"
                 v-model="msg"
@@ -158,10 +158,11 @@ $footer-height: 275px;
             height: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
+            padding: 25px;
             opacity: 0;
             cursor: pointer;
-            background-color: rgba(var(--bubble-hover-bg-color), 0.5);
+            background-color: rgba(var(--bubble-hover-bg-color), 0.85);
             z-index: 2;
 
             &:hover {

@@ -20,6 +20,9 @@
                         <ListItem label="ApiKey" desc="openai api key">
                             <InputBox type="password" v-model="chat.api_key" />
                         </ListItem>
+                        <ListItem :label="$t('authCode')">
+                            <InputBox type="password" v-model="chat.code" />
+                        </ListItem>
                         <ListItem :label="$t('enableMarkdown')">
                             <Switch v-model="chat.markdown" name="markdown" />
                         </ListItem>

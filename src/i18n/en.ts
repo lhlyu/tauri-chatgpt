@@ -9,6 +9,7 @@ export default {
     openSession: 'Please Select A Conversation On The Left',
     createSession: 'Please Create A Session',
     setting: 'Setting',
+    authCode: 'Auth Code',
     hostDesc: 'can use own proxy server',
     enableMarkdown: 'Enable Markdown',
     enableEnter: 'Enter Wrap',
