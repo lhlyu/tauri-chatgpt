@@ -73,8 +73,10 @@ const scrollToActive = () => {
 
 const createSession = () => {
     const id = 's' + nanoid()
+    console.log(`https://api.multiavatar.com/${id}.png`)
     const session: SessionOption = {
         id: id,
+        // avatar: multiavatar(id),
         avatar: `https://api.multiavatar.com/${id}.png`,
         active: true,
         title: t('newSession'),

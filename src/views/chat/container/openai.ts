@@ -194,20 +194,6 @@ const useOpenai = () => {
             }
             loading.value = false
         }
-        if (ev.key === '/') {
-            msg.value = msg.value.trim()
-            if (msg.value.length === 0 || msg.value === '、') {
-                showPreset.value = true
-                msg.value = '/'
-                ev.preventDefault()
-                return
-            }
-        }
-        if (ev.key === '`' && chat.markdown) {
-            msg.value += '`'
-            ev.preventDefault()
-            return
-        }
     }
 
     // 继续话题
@@ -248,10 +234,22 @@ const useOpenai = () => {
     }
 
     watch(msg, (newValue, oldValue) => {
-        if (newValue.trim().length === 0) {
+        newValue = newValue.trim()
+        if (newValue === '') {
             showPreset.value = false
+        } else if (newValue === '/') {
+            showPreset.value = true
         }
     })
+
+    watch(
+        () => store.id,
+        async (newValue, oldValue) => {
+            if (newValue.length) {
+                await scrollBottom()
+            }
+        }
+    )
 
     onMounted(async () => {
         await scrollBottom()

@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { open } from '@tauri-apps/api/shell'
 import { clipboard } from '@tauri-apps/api'
-import tippy from "tippy.js";
+import tippy from 'tippy.js'
 import ChatAside from './aside/index.vue'
 import ChatContainer from './container/index.vue'
 import ModalSetting from './setting.vue'
@@ -37,7 +37,6 @@ const copyCode = async (content: string) => {
     console.log('复制成功')
 }
 
-
 const click = async (event: MouseEvent) => {
     const dom = event.target as HTMLElement
 
@@ -58,7 +57,7 @@ const click = async (event: MouseEvent) => {
             trigger: 'click',
             onTrigger(instance, event) {
                 copyCode(content)
-            },
+            }
         })
         tip.show()
         dom.setAttribute('tip', tip.id.toString())
@@ -75,7 +74,6 @@ onUnmounted(() => {
     document.removeEventListener('keyup', showModalSetting)
     document.removeEventListener('click', click)
 })
-
 </script>
 
 <style scoped lang="scss">

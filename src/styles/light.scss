@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 :root[theme='light'] {
     --font-color: #0f0f0f;
@@ -22,9 +22,7 @@
     --session-bottom-color: 107, 114, 128;
     --session-icon-bg-color: 229, 231, 235;
 
-
-
-    #{$md-font-family}: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    #{$md-font-family}: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     #{$md-font-size}: 16px;
     #{$md-background-color}: transparent;
     #{$md-color}: #24292f;
@@ -34,21 +32,21 @@
     #{$md-img-background-color}: #ffffff;
     #{$md-hr-background-color}: rgba(var(--primary-color), 0.2);
     #{$md-placeholder-color}: #6e7781;
-    #{$md-line-color}: hsla(210,18%,87%,1);
+    #{$md-line-color}: hsla(210, 18%, 87%, 1);
     #{$md-outline-line-color}: #0969da;
-    #{$md-kbd-font-family}: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+    #{$md-kbd-font-family}: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
     #{$md-kbd-font-size}: 11px;
     #{$md-kbd-font-color}: #24292f;
     #{$md-kbd-background-color}: #f6f8fa;
-    #{$md-kbd-line-color}: rgba(175,184,193,0.2);
+    #{$md-kbd-line-color}: rgba(175, 184, 193, 0.2);
     #{$md-h6-color}: #57606a;
     #{$md-blockquote-color}: #555555;
     #{$md-blockquote-background-color}: rgba(var(--primary-color), 0.1);
     #{$md-blockquote-line-color}: rgba(var(--primary-color), 0.6);
     #{$md-pre-background-color}: rgba(209, 213, 219, 0.5);
-    #{$md-code-font-family}: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+    #{$md-code-font-family}: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
     #{$md-code-font-size}: 12px;
-    #{$md-code-background-color}: rgba(175,184,193,0.2);
+    #{$md-code-background-color}: rgba(175, 184, 193, 0.2);
     #{$md-table-line-color}: #d0d7de;
     #{$md-table-odd-background-color}: transparent;
     #{$md-table-even-background-color}: transparent;
