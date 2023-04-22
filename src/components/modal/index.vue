@@ -1,11 +1,9 @@
 <template>
-    <teleport to="body">
-        <transition name="fade">
-            <div v-if="modelValue" class="modal" @click.self="closeModal">
-                <slot></slot>
-            </div>
-        </transition>
-    </teleport>
+    <transition name="fade">
+        <div v-if="modelValue" class="modal" @click.self="closeModal">
+            <slot></slot>
+        </div>
+    </transition>
 </template>
 
 <script setup lang="ts">

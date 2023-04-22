@@ -1,3 +1,4 @@
+@import "variables";
 @import 'light';
 @import 'dark';
 @import 'normalize';
@@ -24,6 +25,7 @@ body {
 
 ::-webkit-scrollbar {
     width: 2px;
+    height: 2px;
 }
 
 ::-webkit-scrollbar-thumb {

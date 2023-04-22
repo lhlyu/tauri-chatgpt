@@ -21,7 +21,6 @@
             </div>
             <div class="content" v-else>{{ $t('waitMessage') }}</div>
         </div>
-        <slot></slot>
     </div>
 </template>
 
@@ -135,6 +134,7 @@ const copyMessageContent = async () => {
         }
 
         .plain-body {
+
             pre {
                 white-space: pre-wrap;
                 word-wrap: break-word;

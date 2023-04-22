@@ -8,6 +8,7 @@ import routes from './routes'
 
 import './styles/index.scss'
 import 'tippy.js/dist/tippy.css'
+import 'tippy.js/themes/light.css'
 
 import App from './App.vue'
 

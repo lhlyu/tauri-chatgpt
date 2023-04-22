@@ -18,11 +18,7 @@
         </header>
         <section ref="dom" v-if="chat.api_key.length || chat.code.length">
             <Preset :show="showPreset as boolean" @pick="pickPreset"></Preset>
-            <Bubble v-for="(v, i) in store.getActiveSession.messages" :key="v.id" v-bind="v">
-                <div class="cancel-mask" v-if="i === store.getActiveSession.messages.length - 1 && loading" @click="cancelRecv">
-                    {{ $t('cancel') }}
-                </div>
-            </Bubble>
+            <Bubble v-for="(v, i) in store.getActiveSession.messages" :key="v.id" v-bind="v"></Bubble>
         </section>
         <section class="empty" v-else>
             <p>{{ $t('noSetApiKey') }}</p>
@@ -30,6 +26,14 @@
             <p>{{ $t('openSetting') }}</p>
         </section>
         <footer>
+            <div class="actions">
+                <template v-if="!loading && store.getActiveSession.messages.length > 1">
+                    <button @click="keepon">{{ $t('continue') }}</button>
+                </template>
+                <template v-if="loading">
+                    <button @click="cancelRecv">{{ $t('cancel') }}</button>
+                </template>
+            </div>
             <textarea
                 ref="textarea"
                 :disabled="loading || (chat.api_key.length === 0 && chat.code.length == 0)"
@@ -78,7 +82,7 @@ const changeTitle = (ev: FocusEvent) => {
     }
 }
 
-const { dom, textarea, loading, showPreset, msg, send, cancelRecv, pickPreset } = useOpenai()
+const { dom, textarea, loading, showPreset, msg, send, keepon, cancelRecv, pickPreset } = useOpenai()
 </script>
 
 <style scoped lang="scss">
@@ -149,32 +153,35 @@ $footer-height: 275px;
         height: calc(100vh - $header-height - $footer-height);
         overflow: auto;
         scroll-behavior: smooth;
-
-        .cancel-mask {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding: 25px;
-            opacity: 0;
-            cursor: pointer;
-            background-color: rgba(var(--bubble-hover-bg-color), 0.85);
-            z-index: 2;
-
-            &:hover {
-                opacity: 1;
-            }
-        }
     }
 
     footer {
+        display: flex;
+        flex-direction: column;
         height: $footer-height;
         border-top: 1px solid rgb(var(--border-color));
         padding: 20px 25px;
+
+        .actions {
+            padding-bottom: 10px;
+            display: flex;
+            button {
+                outline: none;
+                border: 0;
+                background-color: rgb(var(--bubble-hover-bg-color));
+                padding: 6px 14px;
+                margin-right: 10px;
+                border-radius: 4px;
+                color: inherit;
+                cursor: pointer;
+                transition: background-color 0.2s linear;
+
+                &:hover {
+                    background-color: rgb(var(--code-bg-color));
+                }
+            }
+
+        }
 
         textarea {
             border: 0;

@@ -100,7 +100,7 @@ const useOpenai = () => {
             headers: {
                 'content-type': 'application/json',
                 Authorization: `Bearer ${chat.api_key}`,
-                'AUTH_CODE': chat.code
+                AUTH_CODE: chat.code
             },
             body: JSON.stringify({
                 model: chat.model,
@@ -203,6 +203,36 @@ const useOpenai = () => {
                 return
             }
         }
+        if (ev.key === '`' && chat.markdown) {
+            msg.value += '`'
+            ev.preventDefault()
+            return
+        }
+    }
+
+    // 继续话题
+    const keepon = async () => {
+        loading.value = true
+        addMessage('user', t('continue'))
+        await scrollBottom()
+        // 请求
+        await request()
+        await scrollBottom()
+        loading.value = false
+    }
+
+    // 重试
+    // 暂时不支持，会有问题，用户可能会删除所有跟自己有关的消息，导致无法重试
+    const tryAgain = async () => {
+        // 删除最后一条记录
+        const length = store.getActiveSession.messages.length
+        const lastMessage = store.getActiveSession.messages[length - 1]
+
+        if (lastMessage.role !== 'user') {
+            store.removeMessage(store.id, lastMessage.id)
+        }
+        await request()
+        await scrollBottom()
     }
 
     // 取消接收消息
@@ -223,12 +253,6 @@ const useOpenai = () => {
         }
     })
 
-    store.$subscribe((mutation, state) => {
-        if (state.id.length) {
-            focus()
-        }
-    })
-
     onMounted(async () => {
         await scrollBottom()
     })
@@ -240,6 +264,7 @@ const useOpenai = () => {
         showPreset,
         msg,
         send,
+        keepon,
         cancelRecv,
         pickPreset
     }
