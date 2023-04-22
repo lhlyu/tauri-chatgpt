@@ -35,5 +35,6 @@ export default {
     iconDeleteMessage: '删除这条消息',
     iconCopy: '复制成功',
     cancel: '取消',
+    continue: '继续',
     err: '发生了一些异常'
 }

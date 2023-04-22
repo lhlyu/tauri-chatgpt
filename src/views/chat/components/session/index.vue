@@ -1,5 +1,5 @@
 <template>
-    <div :id="id" class="session" :class="{ active }" @click.stop="activeSession">
+    <div :id="id" class="session" :class="{ active }" @click="activeSession">
         <div class="avatar">
             <img :src="avatar" alt="avatar" />
         </div>
@@ -61,7 +61,6 @@ const t = computed(() => {
     if (tt.getFullYear() === now.getFullYear() && tt.getMonth() === now.getMonth() && tt.getDate() === now.getDate()) {
         format = 'HH:mm:ss'
     }
-
     return dayjs(props.ts).format(format)
 })
 
@@ -71,8 +70,12 @@ const deleteSession = () => {
     store.remove(props.id as string)
 }
 
-const activeSession = () => {
-    store.active(props.id as string)
+const activeSession = (event: MouseEvent) => {
+    event.stopPropagation()
+    event.preventDefault()
+    if (store.id !== props.id) {
+        store.active(props.id as string)
+    }
 }
 </script>
 

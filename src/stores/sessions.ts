@@ -114,10 +114,10 @@ const useSessionsStrore = defineStore('sessions', {
                                 this.sessions[i].desc = this.sessions[i].messages[j - 1].content.slice(0, 30)
                             }
                             this.sessions[i].messages.splice(j, 1)
-                            break
+                            return
                         }
                     }
-                    break
+                    return
                 }
             }
         },

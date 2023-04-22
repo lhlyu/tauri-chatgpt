@@ -8,14 +8,13 @@
   },
   "package": {
     "productName": "tauri-chatgpt",
-    "version": "0.0.7"
+    "version": "0.0.8"
   },
   "tauri": {
     "allowlist": {
       "all": true,
       "shell": {
-        "all": false,
-        "open": true
+        "all": true
       },
       "window": {
         "startDragging": true

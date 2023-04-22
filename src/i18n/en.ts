@@ -34,6 +34,7 @@ export default {
     iconDeleteSession: 'delete session',
     iconDeleteMessage: 'delete message',
     iconCopy: 'copied',
-    cancel: 'CANCEL',
+    cancel: 'cancel',
+    continue: 'continue',
     err: 'Something Unusual Happened'
 }
