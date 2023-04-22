@@ -180,7 +180,6 @@ $footer-height: 275px;
                     background-color: rgb(var(--code-bg-color));
                 }
             }
-
         }
 
         textarea {

@@ -19,7 +19,7 @@ const rule = /(?:http(?:s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*
 
 const renderer = new Renderer()
 
-renderer.link = (href,  title, text) => {
+renderer.link = (href, title, text) => {
     const result = href?.match(rule)
     let link = href
     if (result && result.length > 0) {

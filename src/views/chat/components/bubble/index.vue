@@ -134,7 +134,6 @@ const copyMessageContent = async () => {
         }
 
         .plain-body {
-
             pre {
                 white-space: pre-wrap;
                 word-wrap: break-word;
