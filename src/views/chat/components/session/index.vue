@@ -38,7 +38,7 @@ const props = defineProps({
     },
     avatar: {
         type: String,
-        default: '/avatar.jpg'
+        default: '/avatar.png'
     },
     title: {
         type: String,
@@ -161,7 +161,7 @@ const activeSession = (event: MouseEvent) => {
                     transition: background-color 0.2s ease-in-out;
 
                     &:hover {
-                        background-color: rgb(229, 231, 235);
+                        background-color: rgb(var(--session-icon-bg-color));
                     }
                 }
             }

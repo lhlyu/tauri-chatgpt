@@ -59,7 +59,9 @@
                     <List>
                         <ListItem :label="$t('version')">{{ pkg.version }}</ListItem>
                         <ListItem :label="$t('source')">
-                            <IconLink></IconLink>
+                            <a href="https://github.com/lhlyu/tauri-chatgpt" target="_blank">
+                                <IconLink></IconLink>
+                            </a>
                         </ListItem>
                     </List>
                 </div>
@@ -141,6 +143,10 @@ const onActive = (menu: string) => {
         padding: 20px;
         overflow: auto;
         scroll-behavior: smooth;
+
+        a {
+            color: inherit;
+        }
     }
 }
 </style>
