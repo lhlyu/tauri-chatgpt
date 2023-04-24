@@ -2,7 +2,7 @@
     <div class="bubble" :id="id">
         <div class="top">
             <div class="avatar">
-                <img :src="role === 'user' ? store.getActiveSession?.avatar : '/logo.png'" alt="avatar" />
+                <img :src="role === 'user' ? store.getActiveSession?.avatar : '/avatar.png'" alt="avatar" />
                 <time>{{ dayjs(ts).format('YYYY-MM-DD HH:mm:ss') }}</time>
             </div>
             <div class="action">
@@ -93,6 +93,7 @@ const copyMessageContent = async () => {
                 width: 30px;
                 height: 100%;
                 border-radius: 50%;
+                object-fit: cover;
             }
 
             time {

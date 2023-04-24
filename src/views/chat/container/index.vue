@@ -142,7 +142,7 @@ $footer-height: 275px;
             display: flex;
             flex-shrink: 0;
             justify-content: space-between;
-            width: 120px;
+            width: 160px;
 
             i {
                 display: flex;
