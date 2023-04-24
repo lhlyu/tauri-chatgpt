@@ -29,6 +29,7 @@ export default {
     iconTheme: '切换主题',
     iconSetting: '打开设置',
     iconAddSession: '新建会话',
+    iconChangeLayout: '切换布局',
     iconCloseSession: '关闭会话',
     iconClearMessages: '清空消息',
     iconDeleteSession: '删除会话',

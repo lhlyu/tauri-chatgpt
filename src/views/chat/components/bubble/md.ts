@@ -1,20 +1,6 @@
 import { marked, Renderer } from 'marked'
 import hljs from 'highlight.js'
 
-const langs = new Map<string, string | undefined>()
-langs.set('vue', 'html')
-langs.set('react', 'html')
-langs.set('solid', 'html')
-langs.set('svelte', 'html')
-langs.set('angular', 'html')
-langs.set('preact', 'html')
-langs.set('vuejs', 'html')
-langs.set('reactjs', 'html')
-langs.set('solidjs', 'html')
-langs.set('sveltejs', 'html')
-langs.set('angularjs', 'html')
-langs.set('preactjs', 'html')
-
 const rule = /(?:http(?:s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+/
 
 const renderer = new Renderer()
@@ -29,10 +15,17 @@ renderer.link = (href, title, text) => {
 }
 
 renderer.code = (code, lang) => {
-    if (!lang || !hljs.getLanguage(lang)) {
-        lang = langs.get(lang ?? '') || 'plaintext'
+    let content = ''
+
+    try {
+        const result = hljs.highlightAuto(code, lang ? [lang] : undefined)
+        lang = result.language ?? 'plaintext'
+        content = result.value
+    } catch (e) {
+        console.error(e)
+        lang = 'plaintext'
+        content = code
     }
-    const content = hljs.highlightAuto(code, [lang]).value
 
     return `<div class="code-container">
                 <div class="code-header">
