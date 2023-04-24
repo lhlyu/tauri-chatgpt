@@ -66,6 +66,7 @@ const click = async (event: MouseEvent) => {
 }
 
 onMounted(() => {
+    chat.init()
     document.addEventListener('keyup', showModalSetting)
     document.addEventListener('click', click)
 })
