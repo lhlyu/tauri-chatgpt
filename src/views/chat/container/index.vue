@@ -75,6 +75,7 @@ const changeLayout = () => {
 
 const closeSession = () => {
     store.closeSession()
+    chat.init()
 }
 
 const clearMessages = () => {

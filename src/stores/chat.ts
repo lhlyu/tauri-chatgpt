@@ -32,6 +32,10 @@ const useChatStore = defineStore('chat', {
         }
     },
     actions: {
+        init() {
+            this.modal = false
+            this.layout = 0
+        },
         changeLang() {
             this.lang = this.lang === 'zh' ? 'en' : 'zh'
         },
