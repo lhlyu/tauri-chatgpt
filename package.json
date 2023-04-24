@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "tauri:dev": "tauri dev",
     "tauri": "tauri",
-    "tauri:icon": "tauri icon ./chatgpt.png"
+    "tauri:icon": "tauri icon ./logo.png"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
