@@ -7,6 +7,7 @@ const useChatStore = defineStore('chat', {
         theme: 'light',
         modal: false,
         setting: 'global',
+        layout: 0,
         timeout: 5000,
         host: 'https://api.openai.com',
         api_key: '',
@@ -36,6 +37,13 @@ const useChatStore = defineStore('chat', {
         },
         changeTheme() {
             this.theme = this.theme === 'light' ? 'dark' : 'light'
+        },
+        changeLayout() {
+            if (this.layout === 2) {
+                this.layout = 0
+                return
+            }
+            this.layout += 1
         }
     },
     // 启用持久化

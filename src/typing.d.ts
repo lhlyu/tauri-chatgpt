@@ -7,6 +7,8 @@ declare interface ChatOption {
     modal: boolean
     // 当前设置选中的菜单
     setting: string
+    // 布局
+    layout: 0 | 1 | 2
 
     // 请求超时时间
     timeout: number

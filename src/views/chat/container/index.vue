@@ -5,6 +5,9 @@
                 <input type="text" :value="store.getActiveSession.title ?? ''" maxlength="16" :placeholder="$t('sessionTitlePlaceholder')" @blur="changeTitle" autocomplete="off" />
             </div>
             <div class="right">
+                <i @click="changeLayout" v-tippy="$t('iconChangeLayout')">
+                    <component :is="layouts[chat.layout]"></component>
+                </i>
                 <i @click="closeSession" v-tippy="$t('iconCloseSession')">
                     <IconClose></IconClose>
                 </i>
@@ -25,7 +28,7 @@
             <br />
             <p>{{ $t('openSetting') }}</p>
         </section>
-        <footer>
+        <footer v-if="chat.layout === 0">
             <div class="actions">
                 <template v-if="!loading && store.getActiveSession.messages.length > 1">
                     <button @click="keepon">{{ $t('continue') }}</button>
@@ -48,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { IconSetting, IconClose, IconClear } from '../../../components/icons'
+import { IconSetting, IconClose, IconClear, IconLayout1, IconLayout2, IconLayout3 } from '../../../components/icons'
 import { Bubble } from '../components'
 import { useI18n } from 'vue-i18n'
 import Preset from './preset.vue'
@@ -56,12 +59,18 @@ import useSessionsStrore from '../../../stores/sessions'
 import useOpenai from './openai'
 import useChatStore from '../../../stores/chat'
 
+const layouts = [IconLayout1, IconLayout2, IconLayout3]
+
 const { t } = useI18n()
 const store = useSessionsStrore()
 const chat = useChatStore()
 
 const showModalSetting = () => {
     chat.modal = true
+}
+
+const changeLayout = () => {
+    chat.changeLayout()
 }
 
 const closeSession = () => {
@@ -103,8 +112,13 @@ $header-height: 60px;
 $footer-height: 275px;
 
 .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
     header {
         display: flex;
+        flex-shrink: 0;
         justify-content: space-between;
         align-items: center;
         height: $header-height;
@@ -149,14 +163,16 @@ $footer-height: 275px;
     }
 
     section {
+        flex: 1;
         position: relative;
-        height: calc(100vh - $header-height - $footer-height);
+        //height: calc(100vh - $header-height - $footer-height);
         overflow: auto;
         scroll-behavior: smooth;
     }
 
     footer {
         display: flex;
+        flex-shrink: 0;
         flex-direction: column;
         height: $footer-height;
         border-top: 1px solid rgb(var(--border-color));

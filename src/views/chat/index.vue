@@ -1,6 +1,6 @@
 <template>
     <main>
-        <aside>
+        <aside v-if="chat.layout != 2">
             <ChatAside></ChatAside>
         </aside>
         <article>
@@ -90,7 +90,8 @@ main {
     }
 
     article {
-        width: calc(100vw - 300px);
+        flex: 1;
+        width: 100%;
         height: 100%;
         background-color: rgb(var(--article-bg-color));
     }

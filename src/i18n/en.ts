@@ -29,6 +29,7 @@ export default {
     iconTheme: 'switch theme',
     iconSetting: 'open setting',
     iconAddSession: 'new session',
+    iconChangeLayout: 'switch layout',
     iconCloseSession: 'close session',
     iconClearMessages: 'clear messages',
     iconDeleteSession: 'delete session',
