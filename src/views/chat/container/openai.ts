@@ -28,7 +28,10 @@ const useOpenai = () => {
     const scrollBottom = async () => {
         await nextTick(() => {
             if (dom.value) {
-                dom.value.scrollTo(0, dom.value.scrollHeight)
+                const bottom = dom.value.scrollHeight - dom.value.scrollTop - dom.value.clientHeight;
+                if (bottom > 0) {
+                    dom.value.scrollTo(0, dom.value.scrollHeight)
+                }
             }
         })
     }

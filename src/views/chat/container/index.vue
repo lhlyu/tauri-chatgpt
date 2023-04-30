@@ -1,6 +1,6 @@
 <template>
-    <div class="container" v-if="store.id.length">
-        <header>
+    <div class="container" v-if="store.id.length" data-tauri-drag-region>
+        <header data-tauri-drag-region>
             <div class="left">
                 <input type="text" :value="store.getActiveSession.title ?? ''" maxlength="16" :placeholder="$t('sessionTitlePlaceholder')" @blur="changeTitle" autocomplete="off" />
             </div>
@@ -125,9 +125,11 @@ $footer-height: 275px;
         height: $header-height;
         padding: 0 25px;
         border-bottom: 1px solid rgb(var(--border-color));
+        user-select: none;
 
         .left {
-            flex: 1;
+            flex-shrink: 0;
+            width: 160px;
 
             input {
                 outline: none;
@@ -142,8 +144,8 @@ $footer-height: 275px;
         .right {
             display: flex;
             flex-shrink: 0;
-            justify-content: space-between;
             width: 160px;
+            justify-content: space-between;
 
             i {
                 display: flex;
