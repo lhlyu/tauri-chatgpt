@@ -1,6 +1,6 @@
 <template>
     <div class="aside">
-        <header>
+        <header data-tauri-drag-region>
             <div class="left">ChatGPT</div>
             <div class="right">
                 <i @click="changeLang" v-tippy="$t('iconLanguage')">
