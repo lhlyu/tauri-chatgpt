@@ -75,6 +75,13 @@ onUnmounted(() => {
     document.removeEventListener('keyup', showModalSetting)
     document.removeEventListener('click', click)
 })
+
+const articleWidth = computed(() => {
+    if (chat.layout == 2) {
+        return '100vw'
+    }
+    return 'calc(100vw - 300px)'
+})
 </script>
 
 <style scoped lang="scss">
@@ -91,8 +98,8 @@ main {
     }
 
     article {
-        flex: 1;
-        width: 100%;
+        width: v-bind(articleWidth);
+        flex-shrink: 0;
         height: 100%;
         background-color: rgb(var(--article-bg-color));
     }
