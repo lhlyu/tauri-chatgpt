@@ -9,6 +9,7 @@
     background-color: var($md-background-color);
     font-family: var($md-font-family);
     font-size: var($md-font-size);
+    box-sizing: border-box;
 
     &::before {
         display: table;
@@ -66,6 +67,7 @@
         background-color: transparent;
         text-decoration: none;
         color: var($md-a-color);
+        margin: 0 0.2em;
 
         &:hover {
             text-decoration: underline;
@@ -125,7 +127,7 @@
 
     img {
         border-style: none;
-        max-width: 100%;
+        max-width: 400px;
         box-sizing: content-box;
         background-color: var($md-img-background-color);
     }
@@ -136,6 +138,8 @@
     samp {
         font-family: monospace;
         font-size: 1em;
+        white-space: pre-wrap;
+        word-wrap: break-word;
     }
 
     figure {
@@ -336,8 +340,8 @@
     }
 
     blockquote {
-        margin: 0;
-        padding: 0 0 0 1em;
+        margin: 1em 0 !important;
+        padding: 1em;
         color: var($md-blockquote-color);
         background-color: var($md-blockquote-background-color);
         border-left: 0.25em solid var($md-blockquote-line-color);
@@ -444,13 +448,12 @@
 
     code,
     tt {
-        padding: 0.1em 0.2em;
+        padding: 0.1em 0.4em;
         margin: 0 0.2em;
         font-size: 85%;
         white-space: break-spaces;
-        border-radius: 2px;
+        border-radius: 4px;
         background-color: var($md-code-background-color);
-        vertical-align: text-top;
 
         br {
             display: none;
@@ -458,14 +461,25 @@
     }
 
     pre {
-        margin-top: 0;
-        margin-bottom: 0;
+        position: relative;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
         word-wrap: normal;
         padding: 16px;
         overflow: auto;
         font-size: 85%;
         line-height: 1.45;
         border-radius: 6px;
+
+        /* tooltip settings 👇 */
+
+        .language {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            color: var($md-pre-language-color);
+            font-weight: bolder;
+        }
 
         code {
             padding: 0;
@@ -541,123 +555,90 @@
     }
 
     // 代码高亮
-    .code-container {
-        display: flex;
-        flex-direction: column;
+    pre {
         background-color: var($md-pre-background-color);
 
-        margin: 16px 0;
+        .hljs {
+            display: block;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            width: 100%;
 
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 16px 0;
-            user-select: none;
+            //overflow-x: auto;
 
-            &:hover {
-                .action {
-                    opacity: 0.8;
-                }
+            .hljs-doctag,
+            .hljs-keyword,
+            .hljs-meta .hljs-keyword,
+            .hljs-template-tag,
+            .hljs-template-variable,
+            .hljs-type,
+            .hljs-variable.language_ {
+                color: var($hljs-keyword-color);
             }
 
-            .title {
-                opacity: 0.4;
+            .hljs-title,
+            .hljs-title.class_,
+            .hljs-title.class_.inherited__,
+            .hljs-title.function_ {
+                color: var($hljs-title-color);
             }
-
-            .action {
-                transition: opacity 0.4s linear;
-                opacity: 0.4;
-
-                .button {
-                    cursor: pointer;
-                    vertical-align: middle;
-
-                    svg {
-                        pointer-events: none;
-                    }
-                }
+            .hljs-attr,
+            .hljs-attribute,
+            .hljs-literal,
+            .hljs-meta,
+            .hljs-number,
+            .hljs-operator,
+            .hljs-selector-attr,
+            .hljs-selector-class,
+            .hljs-selector-id,
+            .hljs-variable {
+                color: var($hljs-attr-color);
             }
-        }
-        .code-body {
-            .hljs {
-                display: block;
-
-                //overflow-x: auto;
-
-                .hljs-doctag,
-                .hljs-keyword,
-                .hljs-meta .hljs-keyword,
-                .hljs-template-tag,
-                .hljs-template-variable,
-                .hljs-type,
-                .hljs-variable.language_ {
-                    color: var($hljs-keyword-color);
-                }
-
-                .hljs-title,
-                .hljs-title.class_,
-                .hljs-title.class_.inherited__,
-                .hljs-title.function_ {
-                    color: var($hljs-title-color);
-                }
-                .hljs-attr,
-                .hljs-attribute,
-                .hljs-literal,
-                .hljs-meta,
-                .hljs-number,
-                .hljs-operator,
-                .hljs-selector-attr,
-                .hljs-selector-class,
-                .hljs-selector-id,
-                .hljs-variable {
-                    color: var($hljs-attr-color);
-                }
-                .hljs-meta .hljs-string,
-                .hljs-regexp,
-                .hljs-string {
-                    color: var($hljs-meta-color);
-                }
-                .hljs-built_in,
-                .hljs-symbol {
-                    color: var($hljs-symbol-color);
-                }
-                .hljs-code,
-                .hljs-comment,
-                .hljs-formula {
-                    color: var($hljs-code-color);
-                }
-                .hljs-name,
-                .hljs-quote,
-                .hljs-selector-pseudo,
-                .hljs-selector-tag {
-                    color: var($hljs-name-color);
-                }
-                .hljs-subst {
-                    color: var($hljs-subst-color);
-                }
-                .hljs-section {
-                    color: var($hljs-section-color);
-                    font-weight: 700;
-                }
-                .hljs-bullet {
-                    color: var($hljs-bullet-color);
-                }
-                .hljs-emphasis {
-                    color: var($hljs-emphasis-color);
-                    font-style: italic;
-                }
-                .hljs-strong {
-                    color: var($hljs-strong-color);
-                    font-weight: 700;
-                }
-                .hljs-addition {
-                    color: var($hljs-addition-color);
-                    background-color: var($hljs-addition-background-color);
-                }
-                .hljs-deletion {
-                    color: var($hljs-deletion-color);
-                    background-color: var($hljs-deletion-background-color);
-                }
+            .hljs-meta .hljs-string,
+            .hljs-regexp,
+            .hljs-string {
+                color: var($hljs-meta-color);
+            }
+            .hljs-built_in,
+            .hljs-symbol {
+                color: var($hljs-symbol-color);
+            }
+            .hljs-code,
+            .hljs-comment,
+            .hljs-formula {
+                color: var($hljs-code-color);
+            }
+            .hljs-name,
+            .hljs-quote,
+            .hljs-selector-pseudo,
+            .hljs-selector-tag {
+                color: var($hljs-name-color);
+            }
+            .hljs-subst {
+                color: var($hljs-subst-color);
+            }
+            .hljs-section {
+                color: var($hljs-section-color);
+                font-weight: 700;
+            }
+            .hljs-bullet {
+                color: var($hljs-bullet-color);
+            }
+            .hljs-emphasis {
+                color: var($hljs-emphasis-color);
+                font-style: italic;
+            }
+            .hljs-strong {
+                color: var($hljs-strong-color);
+                font-weight: 700;
+            }
+            .hljs-addition {
+                color: var($hljs-addition-color);
+                background-color: var($hljs-addition-background-color);
+            }
+            .hljs-deletion {
+                color: var($hljs-deletion-color);
+                background-color: var($hljs-deletion-background-color);
             }
         }
     }

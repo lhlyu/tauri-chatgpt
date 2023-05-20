@@ -1,35 +1,44 @@
+@import 'functions';
 @import 'variables';
 @import 'light';
 @import 'dark';
 @import 'normalize';
+@import 'components';
+@import 'layouts';
+@import 'views';
 @import 'markdown';
 
-* {
+body {
+    display: flex;
+    font-family: var($font-family);
+    font-size: var($font-size);
+    color: var($font-color);
+    caret-color: var($font-color);
     box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    border-top: 1px solid var($line-color);
+    background-color: var($bg);
+
+    height: 100vh;
+    width: 100%;
 }
 
-body {
-    font-size: 16px;
-    color: var(--font-color);
-    caret-color: var(--font-color);
+svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
 
-    font-family: PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+.icon {
+    color: var($action-icon-color);
 }
 
 ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
+    width: 4px;
+    height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 

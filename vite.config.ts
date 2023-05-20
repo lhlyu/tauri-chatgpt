@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
+import svgLoader from 'vite-svg-loader'
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
@@ -8,7 +9,8 @@ export default defineConfig(async () => ({
         vue(),
         AutoImport({
             imports: ['vue', 'vue-router']
-        })
+        }),
+        svgLoader()
     ],
 
     // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`

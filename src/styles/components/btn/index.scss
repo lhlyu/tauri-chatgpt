@@ -1,0 +1,19 @@
+.btn {
+    outline: none;
+    background: transparent;
+    box-sizing: border-box;
+    border: 1px solid var($btn-line-color);
+    transition: all 0.2s ease-in-out;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: inherit;
+
+    &:hover {
+        border: 1px solid var($btn-hover-line-color);
+    }
+
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+}

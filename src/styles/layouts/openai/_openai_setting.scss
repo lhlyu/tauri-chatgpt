@@ -1,0 +1,15 @@
+.openai-setting {
+    width: 300px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border-left: 1px solid var($line-color);
+
+    h3 {
+        margin: 0;
+        padding: 20px 20px 0;
+    }
+
+    .field {
+        padding: 6px 20px;
+    }
+}

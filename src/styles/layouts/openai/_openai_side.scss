@@ -1,0 +1,51 @@
+.openai-side {
+    flex-shrink: 0;
+    width: 300px;
+    height: 100%;
+    background-color: var($aside-bg);
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        user-select: none;
+
+        .left {
+            box-sizing: border-box;
+            padding-left: 15px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .right {
+            display: flex;
+            box-sizing: border-box;
+            padding-right: 15px;
+
+            .icon {
+                width: 30px;
+                height: 30px;
+                margin-left: 10px;
+                border-radius: 4px;
+                box-sizing: border-box;
+                padding: 5px;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                background-color: var($aside-header-icon-bg);
+
+                &:hover {
+                    background-color: var($aside-header-icon-hover-bg);
+                }
+            }
+        }
+    }
+
+    .sessions {
+        height: calc(100% - 60px);
+        overflow: auto;
+        scroll-behavior: smooth;
+        box-sizing: border-box;
+    }
+}

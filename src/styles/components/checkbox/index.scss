@@ -1,0 +1,96 @@
+.checkbox {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+
+    .label {
+        user-select: none;
+        cursor: pointer;
+        padding: 4px 6px;
+        border-radius: 4px;
+        overflow: hidden;
+        transition: all 0.2s ease;
+        display: inline-block;
+        box-sizing: border-box;
+
+        &:hover {
+            background: var($checkbox-hover-bg);
+
+            span {
+                &:first-child {
+                    border-color: var($checkbox-hover-line-color);
+                }
+            }
+        }
+
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        span {
+            float: left;
+            vertical-align: middle;
+            transform: translate3d(0, 0, 0);
+
+            &:first-child {
+                position: relative;
+                width: 16px;
+                height: 16px;
+                border-radius: 4px;
+                transform: scale(1);
+                border: 1px solid var($checkbox-line-color);
+                transition: all 0.2s ease;
+
+                svg {
+                    position: absolute;
+                    top: 3px;
+                    left: 2px;
+                    fill: none;
+                    stroke: #fff;
+                    stroke-width: 2;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-dasharray: 16px;
+                    stroke-dashoffset: 16px;
+                    transition: all 0.3s ease;
+                    transition-delay: 0.1s;
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            &:last-child {
+                padding-left: 8px;
+                line-height: 18px;
+            }
+        }
+    }
+
+    .input {
+        position: absolute;
+        visibility: hidden;
+
+        &:checked + .label span:first-child {
+            background: var($checkbox-checked-bg);
+            border-color: var($checkbox-hover-line-color);
+            animation: wave 0.4s ease;
+        }
+
+        &:checked + .label span:first-child svg {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    .inline-svg {
+        position: absolute;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    @-moz-keyframes wave {
+        50% {
+            transform: scale(0.9);
+        }
+    }
+}
