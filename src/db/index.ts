@@ -1,4 +1,4 @@
-import SQLite from 'tauri-plugin-sqlite-api'
+import Database from "tauri-plugin-sql-api"
 import Flake from '@rockerapp/flake'
 import { customAlphabet } from 'nanoid'
 const nanoid = customAlphabet('1234567890abcdefghijkmnprstuvwxyz', 10)
@@ -31,11 +31,11 @@ CREATE TABLE IF NOT EXISTS message (
 );
 `
 
-let db: SQLite | null
+let db: Database | null
 
 export const initDB = async () => {
     try {
-        db = await SQLite.open('./app.db')
+        db = await Database.load('sqlite:app.db')
     } catch (e) {
         console.error(`数据库打开失败, ${e}`)
     }
