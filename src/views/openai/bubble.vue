@@ -28,7 +28,6 @@ import dayjs from 'dayjs'
 import IconContentCopy from '../../assets/icons/content_copy.svg?component'
 import IconDelete from '../../assets/icons/delete.svg?component'
 import md from './md'
-import demo from './demo'
 
 const props = defineProps({
     id: {
