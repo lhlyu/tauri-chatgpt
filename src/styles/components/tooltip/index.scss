@@ -1,0 +1,30 @@
+.tooltip {
+    position: relative;
+
+    .tip {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translate(-50%);
+        font-size: 14px;
+        width: max-content;
+        background: #ffffff;
+        padding: 5px 8px;
+        border-radius: 5px;
+        opacity: 1;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+        &:before {
+            position: absolute;
+            content: '';
+            height: 8px;
+            width: 8px;
+            background: #ffffff;
+            top: -3px;
+            left: 50%;
+            transform: translate(-50%) rotate(45deg);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+    }
+}

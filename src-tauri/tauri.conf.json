@@ -7,13 +7,16 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "tauri-chatgpt",
-    "version": "0.1.3"
+    "productName": "Tauri AiChat",
+    "version": "0.2.0"
   },
   "tauri": {
     "allowlist": {
       "all": true,
       "shell": {
+        "all": true
+      },
+      "dialog": {
         "all": true
       },
       "window": {
@@ -29,7 +32,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.lhlyu.chatgpt",
+      "identifier": "com.lhlyu.aichat",
       "targets": "all"
     },
     "security": {
@@ -45,10 +48,10 @@
     },
     "windows": [
       {
-        "title": "Tauri ChatGPT",
+        "title": "Tauri AiChat",
         "hiddenTitle": true,
-        "minWidth": 1000,
-        "minHeight": 600,
+        "minWidth": 1200,
+        "minHeight": 700,
         "maximized": true,
         "resizable": true,
         "titleBarStyle": "Overlay",

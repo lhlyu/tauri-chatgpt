@@ -26,3 +26,5 @@ todo.md
 
 *.key
 *.pub
+
+auto-imports.d.ts

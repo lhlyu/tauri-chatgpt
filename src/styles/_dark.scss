@@ -1,0 +1,118 @@
+:root[theme='dark'] {
+    $primary: #9c88ff;
+    $white: #ffffff;
+    $black: #000000;
+    $gray: #d6d3d1;
+
+    // font
+    #{$font-family}: LXGWNeoXiHei;
+    #{$font-size}: 16px;
+    #{$font-color}: shade-color($white, 15%);
+
+    // line
+    #{$line-color}: shade-color($white, 78%);
+
+    // bg
+    #{$bg}: shade-color($white, 84%);
+
+    // nav
+    #{$nav-bg}: shade-color($white, 84%);
+    #{$nav-icon-hover-bg}: shade-color($white, 90%);
+    #{$nav-icon-bg}: tint-color($primary, 40%);
+    #{$nav-icon-selected-bg}: tint-color($primary, 5%);
+    #{$nav-icon-color}: $white;
+
+    // aside
+    #{$aside-bg}: shade-color($white, 80%);
+    #{$aside-header-icon-bg}: shade-color($white, 82%);
+    #{$aside-header-icon-hover-bg}: shade-color($white, 88%);
+
+    // action icon
+    #{$action-icon-color}: shade-color($white, 30%);
+    #{$action-icon-bg}: shade-color($white, 86%);
+    #{$action-icon-bg-hover}: shade-color($white, 90%);
+
+    // tip
+    #{$tip-color}: shade-color($white, 50%);
+
+    // component checkbox
+    #{$checkbox-line-color}: tint-color($black, 70%);
+    #{$checkbox-hover-line-color}: $primary;
+    #{$checkbox-hover-bg}: tint-color($primary, 90%);
+    #{$checkbox-checked-bg}: $primary;
+
+    // component btn
+    #{$btn-line-color}: tint-color($black, 80%);
+    #{$btn-hover-line-color}: $primary;
+
+    // compnent session
+    #{$session-hover-bg}: shade-color($white, 86%);
+    #{$session-desc-color}: shade-color($white, 30%);
+    #{$session-active-bg}: $primary;
+    #{$session-active-title-color}: $white;
+    #{$session-active-desc-color}: tint-color($black, 94%);
+
+    // component inputz
+    #{$inputz-label-color}: shade-color($white, 30%);
+    #{$inputz-hover-label-color}: tint-color($primary, 20%);
+    #{$inputz-line-color}: shade-color($white, 70%);
+    #{$inputz-hover-line-color}: tint-color($primary, 20%);
+
+    // component selectz
+    #{$selectz-label-color}: shade-color($white, 30%);
+    #{$selectz-hover-label-color}: tint-color($primary, 20%);
+    #{$selectz-line-color}: shade-color($white, 70%);
+    #{$selectz-hover-line-color}: tint-color($primary, 20%);
+
+    // openai bubble
+    #{$bubble-hover-bg}: shade-color($white, 92%);
+
+    // markdown
+    #{$md-font-family}: LXGWNeoXiHei;
+    #{$md-font-size}: 16px;
+    #{$md-background-color}: transparent;
+    #{$md-color}: shade-color($white, 15%);
+    #{$md-a-color}: $primary;
+    #{$md-mark-background-color}: #fff8c5;
+    #{$md-mark-color}: shade-color($white, 15%);
+    #{$md-img-background-color}: $white;
+    #{$md-hr-background-color}: tint-color($primary, 20%);
+    #{$md-placeholder-color}: shade-color($white, 40%);
+    #{$md-line-color}: shade-color($white, 80%);
+    #{$md-outline-line-color}: tint-color($primary, 20%);
+    #{$md-kbd-font-family}: LXGWNeoXiHei;
+    #{$md-kbd-font-size}: 11px;
+    #{$md-kbd-font-color}: shade-color($white, 20%);
+    #{$md-kbd-background-color}: shade-color($white, 80%);
+    #{$md-kbd-line-color}: shade-color($white, 80%);
+    #{$md-h6-color}: shade-color($white, 15%);
+    #{$md-blockquote-color}: shade-color($white, 70%);
+    #{$md-blockquote-background-color}: tint-color($primary, 60%);
+    #{$md-blockquote-line-color}: $primary;
+    #{$md-pre-background-color}: shade-color($white, 86%);
+    #{$md-code-font-family}: LXGWNeoXiHei;
+    #{$md-code-font-size}: 12px;
+    #{$md-code-background-color}: shade-color($white, 95%);
+    #{$md-table-line-color}: shade-color($white, 80%);
+    #{$md-table-odd-background-color}: transparent;
+    #{$md-table-even-background-color}: transparent;
+
+    #{$md-pre-language-color}: shade-color($white, 60%);
+
+    #{$hljs-keyword-color}: #d73a49;
+    #{$hljs-title-color}: #6c5ce7;
+    #{$hljs-attr-color}: #74b9ff;
+    #{$hljs-meta-color}: #74b9ff;
+    #{$hljs-symbol-color}: #e36209;
+    #{$hljs-code-color}: #b2bec3;
+    #{$hljs-name-color}: #22863a;
+    #{$hljs-subst-color}: #95a5a6;
+    #{$hljs-section-color}: #005cc5;
+    #{$hljs-bullet-color}: #735c0f;
+    #{$hljs-emphasis-color}: #dfe6e9;
+    #{$hljs-strong-color}: #bdc3c7;
+    #{$hljs-addition-color}: #22863a;
+    #{$hljs-addition-background-color}: #f0fff4;
+    #{$hljs-deletion-color}: #b31d28;
+    #{$hljs-deletion-background-color}: #ffeef0;
+}
