@@ -1,7 +1,7 @@
 .inputz {
+    position: static;
     display: flex;
     flex-direction: column;
-    position: static;
     width: 100%;
 
     &:hover {
@@ -15,25 +15,25 @@
     }
 
     label {
-        font-size: 12px;
-        color: var($inputz-label-color);
         position: relative;
         top: 0.5rem;
+        width: fit-content;
         margin: 0 0 0 7px;
         padding: 0 6px;
+        color: var($inputz-label-color);
+        font-size: 12px;
         background: var($bg);
-        width: fit-content;
         transition: all 0.2s ease-in-out;
     }
 
     input {
         padding: 12px 10px;
+        color: inherit;
         font-size: 14px;
+        background: transparent;
         border: 1px var($inputz-line-color) solid;
         border-radius: 4px;
-        background: transparent;
         transition: all 0.2s ease-in-out;
-        color: inherit;
 
         &:focus {
             outline: none;

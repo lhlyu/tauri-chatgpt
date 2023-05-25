@@ -10,16 +10,22 @@
 
 body {
     display: flex;
-    font-family: var($font-family);
-    font-size: var($font-size);
-    color: var($font-color);
-    caret-color: var($font-color);
     box-sizing: border-box;
-    border-top: 1px solid var($line-color);
-    background-color: var($bg);
+    width: 100%;
 
     height: 100vh;
-    width: 100%;
+    color: var($font-color);
+    font-size: var($font-size);
+    font-family: var($font-family);
+    background-color: var($bg);
+    border-top: 1px solid var($line-color);
+    font-width: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    caret-color: var($font-color);
+
+    text-rendering: optimizeLegibility;
 }
 
 svg {
@@ -44,6 +50,6 @@ svg {
 
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
     margin: 0;
+    -webkit-appearance: none;
 }

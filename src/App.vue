@@ -6,7 +6,7 @@
 import { open } from '@tauri-apps/api/shell'
 import { useI18n } from 'vue-i18n'
 import useAppStore from './stores/app'
-import {initDB, initSQL} from './db'
+import { initDB, initSQL } from './db'
 
 const { t, locale } = useI18n()
 const app = useAppStore()

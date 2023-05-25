@@ -5,24 +5,24 @@
         position: absolute;
         top: 40px;
         left: 50%;
-        transform: translate(-50%);
-        font-size: 14px;
         width: max-content;
-        background: #ffffff;
         padding: 5px 8px;
+        font-size: 14px;
+        background: #ffffff;
         border-radius: 5px;
+        transform: translate(-50%);
         opacity: 1;
-        pointer-events: none;
         transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        pointer-events: none;
 
         &:before {
-            position: absolute;
             content: '';
-            height: 8px;
-            width: 8px;
-            background: #ffffff;
+            position: absolute;
             top: -3px;
             left: 50%;
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
             transform: translate(-50%) rotate(45deg);
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
