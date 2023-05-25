@@ -3,32 +3,32 @@
 $header-height: 60px;
 
 .openai-main {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
-    height: 100%;
     width: 100%;
+    height: 100%;
     overflow: auto;
 
     header {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        height: $header-height;
-        width: 100%;
+        justify-content: space-between;
         box-sizing: border-box;
-        border-bottom: 1px solid var($line-color);
+        width: 100%;
+        height: $header-height;
         padding: 0 20px;
+        border-bottom: 1px solid var($line-color);
         user-select: none;
 
         .left {
             font-size: 20px;
             input {
-                outline: none;
-                border: 0;
                 width: 250px;
-                background-color: inherit;
                 color: inherit;
+                background-color: inherit;
+                border: 0;
+                outline: none;
             }
         }
 
@@ -36,15 +36,15 @@ $header-height: 60px;
             display: flex;
 
             .icon {
+                box-sizing: border-box;
                 width: 34px;
                 height: 34px;
                 margin-left: 20px;
-                cursor: pointer;
-                box-sizing: border-box;
-                transition: all 0.2s ease-in-out;
-                border-radius: 4px;
                 padding: 6px;
                 background-color: var($action-icon-bg);
+                border-radius: 4px;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
 
                 &:hover {
                     background-color: var($action-icon-bg-hover);
@@ -56,28 +56,28 @@ $header-height: 60px;
 
     .container {
         flex: 1;
-        height: 100%;
+        box-sizing: border-box;
         width: 100%;
         max-width: 1400px;
+        height: 100%;
         margin: 0 auto;
-        box-sizing: border-box;
         overflow: auto;
         scroll-behavior: smooth;
     }
 
     footer {
-        width: 100%;
         box-sizing: border-box;
+        width: 100%;
         border-top: 1px solid var($line-color);
 
         .toolbar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             flex-shrink: 0;
-            height: 40px;
-            width: 100%;
+            align-items: center;
+            justify-content: space-between;
             box-sizing: border-box;
+            width: 100%;
+            height: 40px;
             padding: 0 20px;
 
             .left {
@@ -88,13 +88,13 @@ $header-height: 60px;
                 display: flex;
 
                 .icon {
+                    box-sizing: border-box;
                     width: 30px;
                     height: 30px;
-                    cursor: pointer;
-                    box-sizing: border-box;
-                    transition: all 0.2s ease-in-out;
-                    border-radius: 4px;
                     margin-left: 5px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: all 0.2s ease-in-out;
 
                     &:hover {
                         transform: scale(0.9);
@@ -105,60 +105,60 @@ $header-height: 60px;
 
         .send-box {
             position: relative;
+            box-sizing: border-box;
             width: 100%;
             height: 200px;
             //border-top: 1px solid var($line-color);
             padding: 10px 0 10px;
-            box-sizing: border-box;
 
             textarea {
-                padding: 0 20px;
                 box-sizing: border-box;
-                outline: none;
-                resize: none;
-                border: 0;
-                letter-spacing: 1px;
                 width: 100%;
                 height: 100%;
-                line-height: 1.8;
-                background-color: transparent;
+                padding: 0 20px;
                 color: inherit;
+                line-height: 1.8;
+                letter-spacing: 1px;
+                background-color: transparent;
+                border: 0;
+                outline: none;
+                resize: none;
             }
 
             .tip {
                 position: absolute;
-                left: 0;
                 top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: 100%;
                 height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                color: var($tip-color);
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 1.8;
+                letter-spacing: 2px;
                 user-select: none;
                 pointer-events: none;
-                color: var($tip-color);
-                font-size: 14px;
-                letter-spacing: 2px;
-                font-weight: 400;
-                line-height: 1.8;
             }
         }
     }
 }
 
 .openai-empty-main {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 
     color: var($tip-color);
 
     p {
-        padding: 5px 0;
         margin: 0;
+        padding: 5px 0;
     }
 }

@@ -1,25 +1,25 @@
 .markdown-body {
+    box-sizing: border-box;
+    margin: 0;
+    color: var($md-color);
+    font-size: var($md-font-size);
+    font-family: var($md-font-family);
+    line-height: 1.5;
+    word-wrap: break-word;
+    background-color: var($md-background-color);
     will-change: height;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    margin: 0;
-    line-height: 1.5;
-    word-wrap: break-word;
-    color: var($md-color);
-    background-color: var($md-background-color);
-    font-family: var($md-font-family);
-    font-size: var($md-font-size);
-    box-sizing: border-box;
 
     &::before {
-        display: table;
         content: '';
+        display: table;
     }
 
     &::after {
+        content: '';
         display: table;
         clear: both;
-        content: '';
     }
 
     & > *:first-child {
@@ -64,10 +64,10 @@
     }
 
     a {
-        background-color: transparent;
-        text-decoration: none;
-        color: var($md-a-color);
         margin: 0 0.2em;
+        color: var($md-a-color);
+        text-decoration: none;
+        background-color: transparent;
 
         &:hover {
             text-decoration: underline;
@@ -80,8 +80,8 @@
     }
 
     abbr[title] {
-        border-bottom: none;
         text-decoration: underline dotted;
+        border-bottom: none;
     }
 
     b,
@@ -95,14 +95,14 @@
 
     h1 {
         margin: 0.67em 0;
-        font-weight: 600;
         padding-bottom: 0.3em;
+        font-weight: 600;
         font-size: 2em;
     }
 
     mark {
-        background-color: var($md-mark-background-color);
         color: var($md-mark-color);
+        background-color: var($md-mark-background-color);
     }
 
     small {
@@ -111,9 +111,9 @@
 
     sub,
     sup {
+        position: relative;
         font-size: 75%;
         line-height: 0;
-        position: relative;
         vertical-align: baseline;
     }
 
@@ -126,18 +126,18 @@
     }
 
     img {
-        border-style: none;
-        max-width: 400px;
         box-sizing: content-box;
+        max-width: 400px;
         background-color: var($md-img-background-color);
+        border-style: none;
     }
 
     code,
     kbd,
     pre,
     samp {
-        font-family: monospace;
         font-size: 1em;
+        font-family: monospace;
         white-space: pre-wrap;
         word-wrap: break-word;
     }
@@ -148,29 +148,29 @@
 
     hr {
         box-sizing: content-box;
-        overflow: hidden;
         height: 0.1em;
-        padding: 0;
-        border: 0;
         margin: 24px 0;
+        padding: 0;
+        overflow: hidden;
         background-color: var($md-hr-background-color);
+        border: 0;
 
         &::before {
-            display: table;
             content: '';
+            display: table;
         }
 
         &::after {
+            content: '';
             display: table;
             clear: both;
-            content: '';
         }
     }
 
     input {
-        font: inherit;
         margin: 0;
         overflow: visible;
+        font: inherit;
         line-height: inherit;
 
         &::-webkit-outer-spin-button,
@@ -209,22 +209,22 @@
     }
 
     ::-webkit-file-upload-button {
-        -webkit-appearance: button;
         font: inherit;
+        -webkit-appearance: button;
     }
 
     ::placeholder {
-        opacity: 1;
         color: var($md-placeholder-color);
+        opacity: 1;
     }
 
     table {
-        border-spacing: 0;
-        border-collapse: collapse;
         display: block;
         width: max-content;
         max-width: 100%;
         overflow: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
     }
 
     td,
@@ -246,9 +246,9 @@
     [role='button']:focus,
     input[type='radio']:focus,
     input[type='checkbox']:focus {
+        outline: 2px solid var($md-outline-line-color);
         outline-offset: -2px;
         box-shadow: none;
-        outline: 2px solid var($md-outline-line-color);
     }
 
     a:focus:not(:focus-visible),
@@ -262,9 +262,9 @@
     [role='button']:focus-visible,
     input[type='radio']:focus-visible,
     input[type='checkbox']:focus-visible {
+        outline: 2px solid var($md-outline-line-color);
         outline-offset: -2px;
         box-shadow: none;
-        outline: 2px solid var($md-outline-line-color);
     }
 
     a:not([class]):focus,
@@ -279,14 +279,14 @@
     kbd {
         display: inline-block;
         padding: 3px 5px;
+        color: var($md-kbd-font-color);
+        font-size: var($md-kbd-font-size);
+        font-family: var($md-kbd-font-family);
         line-height: 10px;
         vertical-align: middle;
-        border-radius: 6px;
-        font-family: var($md-kbd-font-family);
-        font-size: var($md-kbd-font-size);
-        color: var($md-kbd-font-color);
         background-color: var($md-kbd-background-color);
         border: solid 1px var($md-kbd-line-color);
+        border-radius: 6px;
     }
 
     h1,
@@ -308,8 +308,8 @@
     }
 
     h2 {
-        font-weight: 600;
         padding-bottom: 0.3em;
+        font-weight: 600;
         font-size: 1.5em;
     }
 
@@ -329,9 +329,9 @@
     }
 
     h6 {
+        color: var($md-h6-color);
         font-weight: 600;
         font-size: 0.85em;
-        color: var($md-h6-color);
     }
 
     p {
@@ -418,16 +418,16 @@
         padding: 0;
 
         dt {
-            padding: 0;
             margin-top: 16px;
+            padding: 0;
+            font-weight: 600;
             font-size: 1em;
             font-style: italic;
-            font-weight: 600;
         }
 
         dd {
-            padding: 0 16px;
             margin-bottom: 16px;
+            padding: 0 16px;
         }
     }
 
@@ -448,12 +448,12 @@
 
     code,
     tt {
-        padding: 0.1em 0.4em;
         margin: 0 0.2em;
+        padding: 0.1em 0.4em;
         font-size: 85%;
         white-space: break-spaces;
-        border-radius: 4px;
         background-color: var($md-code-background-color);
+        border-radius: 4px;
 
         br {
             display: none;
@@ -464,39 +464,39 @@
         position: relative;
         margin-top: 0.5em;
         margin-bottom: 0.5em;
-        word-wrap: normal;
         padding: 16px;
         overflow: auto;
         font-size: 85%;
         line-height: 1.45;
+        word-wrap: normal;
         border-radius: 6px;
 
         /* tooltip settings 👇 */
 
         .language {
             position: absolute;
-            right: 16px;
             top: 16px;
+            right: 16px;
             color: var($md-pre-language-color);
             font-weight: bolder;
         }
 
         code {
-            padding: 0;
             margin: 0;
-            border: 0;
+            padding: 0;
             font-size: 100%;
-            word-break: normal;
             white-space: pre;
+            word-break: normal;
             background: transparent;
+            border: 0;
         }
 
         code,
         tt {
             display: inline;
             width: max-content;
-            padding: 0;
             margin: 0;
+            padding: 0;
             overflow: visible;
             line-height: inherit;
             word-wrap: normal;
@@ -522,8 +522,8 @@
 
     table {
         th {
-            font-weight: 600;
             padding: 6px 13px;
+            font-weight: 600;
             border: 1px solid var($md-table-line-color);
         }
 
@@ -533,8 +533,8 @@
         }
 
         tr {
-            border-top: 1px solid var($md-line-color);
             background-color: var($md-table-odd-background-color);
+            border-top: 1px solid var($md-line-color);
 
             &:nth-child(2n) {
                 background-color: var($md-table-even-background-color);
@@ -560,9 +560,9 @@
 
         .hljs {
             display: block;
+            width: 100%;
             white-space: pre-wrap;
             word-wrap: break-word;
-            width: 100%;
 
             //overflow-x: auto;
 

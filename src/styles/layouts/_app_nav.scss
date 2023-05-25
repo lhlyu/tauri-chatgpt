@@ -1,15 +1,15 @@
 nav {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     flex-shrink: 0;
+    justify-content: space-between;
+    box-sizing: border-box;
     width: 70px;
     height: 100%;
-    background-color: var($nav-bg);
-    user-select: none;
-    box-sizing: border-box;
     padding: 40px 0 20px;
+    background-color: var($nav-bg);
     border-right: 1px solid var($line-color);
+    user-select: none;
 
     .top {
         display: flex;
@@ -17,16 +17,16 @@ nav {
         align-items: center;
 
         .icon {
+            box-sizing: border-box;
             width: 45px;
             height: 45px;
-            cursor: pointer;
-            box-sizing: border-box;
-            transition: all 0.2s ease-in-out;
-            border-radius: 4px;
-            padding: 5px;
             margin-bottom: 10px;
-            background-color: var($nav-icon-bg);
+            padding: 5px;
             color: var($nav-icon-color);
+            background-color: var($nav-icon-bg);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
 
             &:hover {
                 background-color: var($nav-icon-selected-bg);
@@ -45,14 +45,14 @@ nav {
         justify-content: flex-end;
 
         .icon {
+            box-sizing: border-box;
             width: 45px;
             height: 45px;
-            cursor: pointer;
             margin-bottom: 10px;
-            box-sizing: border-box;
-            border-radius: 4px;
-            transition: all 0.2s ease-in-out;
             padding: 7px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
 
             &:hover {
                 background-color: var($nav-icon-hover-bg);

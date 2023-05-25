@@ -1,39 +1,43 @@
 <template>
     <aside class="openai-setting" v-if="openai.setting_open">
         <h3>{{ $t('setting') }}</h3>
-        <div class="field">
-            <Inputz label="Host" v-model="openai.host"></Inputz>
-        </div>
-        <div class="field">
-            <Inputz :label="$t('timeout')" type="number" v-model="openai.timeout"></Inputz>
-        </div>
-        <div class="field">
-            <Inputz :label="$t('openai_api_key')" v-model="openai.key"></Inputz>
-        </div>
-        <div class="field">
-            <Inputz :label="$t('auth_code')" v-model="openai.code"></Inputz>
-        </div>
-        <div class="field">
-            <Selectz :label="$t('model')" v-model="openai.model" :options="models"></Selectz>
-        </div>
-        <div class="field">
-            <Inputz :label="$t('context_count')" type="number" v-model="openai.context_count"></Inputz>
-        </div>
-        <div class="field">
-            <Inputz label="Max Tokens" type="number" v-model="openai.max_tokens"></Inputz>
-        </div>
-        <div class="field">
-            <Inputz label="Temperature" type="number" v-model="openai.temperature"></Inputz>
-        </div>
-        <div class="field">
-            <Inputz label="Presence Penalty" type="number" v-model="openai.presence_penalty"></Inputz>
-        </div>
+        <Field label="Host">
+            <InputBox v-model="openai.host"></InputBox>
+        </Field>
+        <Field :label="$t('timeout')">
+            <InputBox v-model.number="openai.timeout" type="number"></InputBox>
+        </Field>
+        <Field :label="$t('openai_api_key')">
+            <InputBox v-model="openai.key"></InputBox>
+        </Field>
+        <Field :label="$t('auth_code')">
+            <InputBox v-model="openai.code"></InputBox>
+        </Field>
+        <Field :label="$t('model')">
+            <Dropdown v-model="openai.model" :items="models"></Dropdown>
+        </Field>
+        <Field :label="$t('context_count')" :desc="`${openai.context_count ?? 0}`">
+            <Slider v-model="openai.context_count" :min="1" :max="20"></Slider>
+        </Field>
+        <Field label="Max Tokens" :desc="`${openai.max_tokens ?? 0}`">
+            <Slider v-model="openai.max_tokens" :min="64" :max="2048" :step="64"></Slider>
+        </Field>
+
+        <Field label="Temperature" :desc="`${openai.temperature ?? 0}`">
+            <Slider v-model="openai.temperature" :min="0" :max="2" :step="0.1"></Slider>
+        </Field>
+
+        <Field label="Presence Penalty" :desc="`${openai.presence_penalty ?? 0}`">
+            <Slider v-model="openai.presence_penalty" :min="-2" :max="2" :step="0.1"></Slider>
+        </Field>
     </aside>
 </template>
 
 <script setup lang="ts">
-import Inputz from '../../components/inputz/index.vue'
-import Selectz from '../../components/selectz/index.vue'
+import Field from '../../components/field/index.vue'
+import Dropdown from '../../components/dropdown/index.vue'
+import InputBox from '../../components/input-box/index.vue'
+import Slider from '../../components/slider/index.vue'
 import useOpenaiStore from '../../stores/openai'
 
 const openai = useOpenaiStore()

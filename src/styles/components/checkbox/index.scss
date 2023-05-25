@@ -4,14 +4,14 @@
     box-sizing: border-box;
 
     .label {
-        user-select: none;
-        cursor: pointer;
-        padding: 4px 6px;
-        border-radius: 4px;
-        overflow: hidden;
-        transition: all 0.2s ease;
         display: inline-block;
         box-sizing: border-box;
+        padding: 4px 6px;
+        overflow: hidden;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        user-select: none;
 
         &:hover {
             background: var($checkbox-hover-bg);
@@ -36,15 +36,18 @@
                 position: relative;
                 width: 16px;
                 height: 16px;
+                border: 1px solid var($checkbox-line-color);
                 border-radius: 4px;
                 transform: scale(1);
-                border: 1px solid var($checkbox-line-color);
                 transition: all 0.2s ease;
 
                 svg {
                     position: absolute;
                     top: 3px;
                     left: 2px;
+                    transform: translate3d(0, 0, 0);
+                    transition: all 0.3s ease;
+                    transition-delay: 0.1s;
                     fill: none;
                     stroke: #fff;
                     stroke-width: 2;
@@ -52,9 +55,6 @@
                     stroke-linejoin: round;
                     stroke-dasharray: 16px;
                     stroke-dashoffset: 16px;
-                    transition: all 0.3s ease;
-                    transition-delay: 0.1s;
-                    transform: translate3d(0, 0, 0);
                 }
             }
 
@@ -84,8 +84,8 @@
         position: absolute;
         width: 0;
         height: 0;
-        pointer-events: none;
         user-select: none;
+        pointer-events: none;
     }
 
     @-moz-keyframes wave {

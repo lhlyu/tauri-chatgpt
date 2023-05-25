@@ -1,7 +1,7 @@
 .selectz {
+    position: static;
     display: flex;
     flex-direction: column;
-    position: static;
     width: 100%;
 
     &:hover {
@@ -15,29 +15,29 @@
     }
 
     label {
-        font-size: 12px;
-        color: var($selectz-label-color);
         position: relative;
         top: 0.5rem;
+        width: fit-content;
         margin: 0 0 0 7px;
         padding: 0 6px;
+        color: var($selectz-label-color);
+        font-size: 12px;
         background: var($bg);
-        width: fit-content;
         transition: all 0.2s ease-in-out;
     }
 
     select {
-        -webkit-appearance: none;
-        outline: none;
+        height: 60px;
         padding: 12px 10px;
+        color: inherit;
         font-size: 14px;
+        background: transparent;
         border: 1px var($selectz-line-color) solid;
         border-radius: 4px;
-        background: transparent;
-        transition: all 0.2s ease-in-out;
-        height: 60px;
+        outline: none;
         box-shadow: none;
-        color: inherit;
+        transition: all 0.2s ease-in-out;
+        -webkit-appearance: none;
 
         &:focus {
             outline: none;

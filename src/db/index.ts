@@ -1,4 +1,4 @@
-import Database from "tauri-plugin-sql-api"
+import Database from 'tauri-plugin-sql-api'
 import Flake from '@rockerapp/flake'
 import { customAlphabet } from 'nanoid'
 const nanoid = customAlphabet('1234567890abcdefghijkmnprstuvwxyz', 10)

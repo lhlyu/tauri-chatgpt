@@ -7,5 +7,8 @@
     "jsxBracketSameLine": true,
     "printWidth": 180,
     "trailingComma": "none",
-    "arrowParens": "avoid"
+    "arrowParens": "avoid",
+    "plugins": [
+      "prettier-plugin-rational-order"
+    ]
 }

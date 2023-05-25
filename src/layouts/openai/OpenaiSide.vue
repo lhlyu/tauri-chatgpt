@@ -90,7 +90,7 @@ const activeSession = async (id: string) => {
 
 onMounted(() => {
     // 监听修改名字
-    bus.on(EventChangeSessionInfo, ( param:any ) => {
+    bus.on(EventChangeSessionInfo, (param: any) => {
         for (let i = 0; i < sessions.value.length; i++) {
             if (sessions.value[i].id === param.id) {
                 if (param.name) {
